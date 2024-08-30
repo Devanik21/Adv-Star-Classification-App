@@ -14,7 +14,7 @@ st.markdown("""
             background-color: #f7f7f7;
         }
         .stSidebar .stSelectbox div {
-            color: #007bff;
+            color: #78b2f0;
         }
         .stButton button {
             background-color: #007bff;
