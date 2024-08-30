@@ -117,8 +117,3 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-this is
-adv_stars_class_app.py
-
-create more 6 multi page .py files 
-and give one home page and navigation bar
