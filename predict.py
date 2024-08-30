@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# Set the page configuration as the first Streamlit command
+st.set_page_config(page_title="Star Classification App", page_icon="🌟🔭", layout="wide")
+
 # Load the trained model
 model = joblib.load("CatBoost_adv_stars_class.pkl")
 
 # Title of the web app
-st.set_page_config(page_title="Star Classification App", page_icon="🌟🔭", layout="wide")
 st.title("Star Classification App")
 
 # Custom CSS for styling
@@ -116,4 +118,3 @@ st.markdown("""
     <strong>Note:</strong> The classification is based on the model's analysis of features like alpha, delta, magnitudes in different bands (u, g, r, i, z), redshift, and observation data (plate, MJD).
 </div>
 """, unsafe_allow_html=True)
-
