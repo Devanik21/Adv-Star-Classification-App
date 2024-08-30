@@ -1,4 +1,8 @@
 import streamlit as st
 
-st.title("✨ Recommend")
-st.write("Recommendation system for similar star types will go here.")
+def main():
+    st.title("✨ Recommend")
+    st.write("Recommendation system for similar star types will go here.")
+
+if __name__ == "__main__":
+    main()
