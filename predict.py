@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Set the page configuration as the first Streamlit command
-st.set_page_config(page_title="Star Classification App", page_icon="🌟🔭", layout="wide")
-
 # Load the trained model
 model = joblib.load("CatBoost_adv_stars_class.pkl")
 
