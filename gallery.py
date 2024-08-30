@@ -1,4 +1,8 @@
 import streamlit as st
 
-st.title("Gallery")
-st.write("Gallery of star images or examples will go here.")
+def main():
+    st.title("Gallery")
+    st.write("Gallery of star images or examples will go here.")
+
+if __name__ == "__main__":
+    main()
