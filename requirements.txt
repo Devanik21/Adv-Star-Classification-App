@@ -1,0 +1,17 @@
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+xgboost
+lightgbm
+catboost
+tensorflow
+keras
+torch
+torchvision
+pytorch-lightning
+statsmodels
+plotly
+streamlit
