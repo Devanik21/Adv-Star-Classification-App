@@ -18,17 +18,25 @@ page = st.sidebar.selectbox("Select a page", [
 # Load the appropriate page based on the selection
 if page == "🚀 Predict":
     import predict
+    predict.main()  # Ensure that you have a `main()` function in `predict.py`
 elif page == "✨ Recommend":
     import recommend
+    recommend.main()
 elif page == "📊 Visualize":
     import visualize
+    visualize.main()
 elif page == "🔍 Analyze":
     import analyze
+    analyze.main()
 elif page == "🔭 Insights":
     import insights
+    insights.main()
 elif page == "Gallery":
     import gallery
+    gallery.main()
 elif page == "Feedback":
     import feedback
+    feedback.main()
 elif page == "📚 About":
     import about
+    about.main()
