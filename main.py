@@ -83,7 +83,7 @@ elif page == "📚 About":
 
 # Adding a footer
 st.markdown("""
-    <div style="text-align: center; padding: 10px; background-color: #333; color: #469600; border-radius: 5px;">
+    <div style="text-align: center; padding: 10px; background-color: #333; color: #97c769; border-radius: 5px;">
         <p style="margin: 0;">Made with ❤️ by Devanik + AI</p>
     </div>
 """, unsafe_allow_html=True)
