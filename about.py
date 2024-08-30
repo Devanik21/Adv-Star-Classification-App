@@ -20,4 +20,11 @@ st.write("""
     - **Feedback**: Provide feedback or get in touch with us.
 
     ### Team
-    This app was developed by [Your Name] and is c
+    This app was developed by [Your Name] and is currently maintained by a dedicated team of astronomy enthusiasts and data scientists. We are passionate about bringing the wonders of the universe to your fingertips.
+    
+    ### Acknowledgments
+    We would like to thank the open-source community and the contributors to the various libraries used in this app, including Streamlit, Pandas, and CatBoost.
+    
+    ### Contact
+    If you have any questions, suggestions, or feedback, feel free to reach out to us via the **Feedback** page.
+""")
