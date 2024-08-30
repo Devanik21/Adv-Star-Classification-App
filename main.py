@@ -1,5 +1,8 @@
 import streamlit as st
 
+# Set page configuration once at the start
+st.set_page_config(page_title="Star Classification App", page_icon="🌟🔭", layout="wide")
+
 # Page selection
 page = st.sidebar.selectbox("Select a page", [
     "🚀 Predict",
