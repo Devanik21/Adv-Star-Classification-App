@@ -163,17 +163,21 @@ def main():
             plt.close()
 
     # Bubble Chart
+    # Bubble Chart
     st.subheader("🌐 Bubble Chart")
     st.write("Visualize relationships with a bubble chart.")
     x_bubble = st.selectbox("Choose column for X axis:", data.columns.tolist(), index=0, key="bubble_x")
     y_bubble = st.selectbox("Choose column for Y axis:", data.columns.tolist(), index=1, key="bubble_y")
     size_bubble = st.selectbox("Choose column for bubble size:", data.columns.tolist(), index=2, key="bubble_size")
+
     if x_bubble and y_bubble and size_bubble:
-        bubble_chart_fig = px.scatter(
-            data, x=x_bubble, y=y_bubble, size=size_bubble, color=size_bubble,
-            title=f"Bubble Chart of {x_bubble} vs {y_bubble} with size based on {size_bubble}"
-        )
-        st.plotly_chart(bubble_chart_fig)
+    # Ensure all bubble sizes are positive and scaled appropriately
+      bubble_size = data[size_bubble].abs() + 1e-10  # Add a small constant to avoid zero size
+      bubble_chart_fig = px.scatter(
+        data, x=x_bubble, y=y_bubble, size=bubble_size, color=size_bubble,
+        title=f"Bubble Chart of {x_bubble} vs {y_bubble} with size based on {size_bubble}"
+      )
+    st.plotly_chart(bubble_chart_fig)
 
     # Regression Line
     st.subheader("📏 Regression Line")
