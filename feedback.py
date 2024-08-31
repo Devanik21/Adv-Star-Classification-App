@@ -9,7 +9,7 @@ def main():
         """
         <style>
         .stApp {
-            background-color: #331717;
+            background-color: #6b6161;
         }
         </style>
         """,
