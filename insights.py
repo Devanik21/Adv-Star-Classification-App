@@ -152,12 +152,12 @@ def main():
 
 
     # Bubble Chart
-   st.subheader("🔵 Bubble Chart")
-   st.write("Visualize the relationship between three features using a bubble chart.")
-   x_bubble = st.selectbox("Choose feature for X axis (Bubble Chart):", data.columns.tolist())
-   y_bubble = st.selectbox("Choose feature for Y axis (Bubble Chart):", data.columns.tolist())
-   size_bubble = st.selectbox("Choose feature for Bubble Size:", data.columns.tolist())
-   if x_bubble and y_bubble and size_bubble:
+ st.subheader("🔵 Bubble Chart")
+ st.write("Visualize the relationship between three features using a bubble chart.")
+ x_bubble = st.selectbox("Choose feature for X axis (Bubble Chart):", data.columns.tolist())
+ y_bubble = st.selectbox("Choose feature for Y axis (Bubble Chart):", data.columns.tolist())
+ size_bubble = st.selectbox("Choose feature for Bubble Size:", data.columns.tolist())
+ if x_bubble and y_bubble and size_bubble:
      bubble_fig = px.scatter(
         data,
         x=x_bubble,
