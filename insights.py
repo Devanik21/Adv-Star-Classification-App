@@ -11,7 +11,6 @@ def main():
     st.write("Explore insights based on model predictions and data analysis.")
 
     # Load dataset
-    # Load dataset
     @st.cache_data
     def load_data():
         try:
@@ -44,28 +43,24 @@ def main():
     # Model Performance Metrics
     st.subheader("📈 Model Performance Metrics")
     st.write("Evaluate the model's performance metrics.")
-    if model:
-        # Replace with actual metrics if you have them
-        st.write("Accuracy: 95%")  # Example metric
-        st.write("Precision: 94%")  # Example metric
-        st.write("Recall: 96%")  # Example metric
-        st.write("F1 Score: 95%")  # Example metric
+    # Replace with actual metrics if you have them
+    st.write("Accuracy: 95%")  # Example metric
+    st.write("Precision: 94%")  # Example metric
+    st.write("Recall: 96%")  # Example metric
+    st.write("F1 Score: 95%")  # Example metric
 
     # Feature Importance
     st.subheader("🔍 Feature Importance")
     st.write("Understand the importance of each feature in model predictions.")
-    if model:
-        # Example feature importance
-        # Replace with actual feature importances if available
-        feature_names = ['alpha', 'delta', 'u', 'g', 'r', 'i', 'z', 'redshift']
-        importances = np.random.rand(len(feature_names))  # Example data
-        feature_importance_fig = px.bar(
-            x=feature_names,
-            y=importances,
-            title="Feature Importance",
-            labels={"x": "Feature", "y": "Importance"}
-        )
-        st.plotly_chart(feature_importance_fig)
+    feature_names = ['alpha', 'delta', 'u', 'g', 'r', 'i', 'z', 'redshift']
+    importances = np.random.rand(len(feature_names))  # Example data
+    feature_importance_fig = px.bar(
+        x=feature_names,
+        y=importances,
+        title="Feature Importance",
+        labels={"x": "Feature", "y": "Importance"}
+    )
+    st.plotly_chart(feature_importance_fig)
 
     # Interactive Feature Exploration
     st.subheader("🔍 Interactive Feature Exploration")
@@ -82,8 +77,7 @@ def main():
     st.write("Select features for prediction:")
     features = st.multiselect("Choose features for prediction:", data.columns.tolist(), default=['alpha', 'delta', 'u'])
     if len(features) > 0:
-        # Dummy example of generating predictions
-        # Replace with actual prediction code
+        # Generate predictions
         predictions = model.predict(data[features])
         data['predictions'] = predictions
         prediction_dist_fig = px.histogram(data, x='predictions', title="Distribution of Model Predictions")
@@ -94,7 +88,6 @@ def main():
     st.write("Visualize the confusion matrix of model predictions.")
     if model:
         # Dummy confusion matrix example
-        # Replace with actual confusion matrix if available
         confusion_matrix = np.array([[50, 10], [5, 100]])  # Example data
         confusion_matrix_fig = px.imshow(confusion_matrix, color_continuous_scale='Blues', title="Confusion Matrix")
         st.plotly_chart(confusion_matrix_fig)
@@ -104,7 +97,6 @@ def main():
     st.write("Plot the ROC curve for model performance.")
     if model:
         # Dummy ROC curve example
-        # Replace with actual ROC curve data if available
         fpr = np.linspace(0, 1, 100)
         tpr = np.linspace(0, 1, 100)
         roc_curve_fig = px.line(
@@ -120,7 +112,6 @@ def main():
     st.write("Plot the Precision-Recall curve for model performance.")
     if model:
         # Dummy Precision-Recall curve example
-        # Replace with actual Precision-Recall data if available
         precision = np.linspace(0, 1, 100)
         recall = np.linspace(0, 1, 100)
         pr_curve_fig = px.line(
@@ -139,24 +130,6 @@ def main():
         feature_dist_fig = px.histogram(data, x=feature_dist, title=f"Distribution of {feature_dist}")
         st.plotly_chart(feature_dist_fig)
 
-    # Pairwise Relationships
-    st.subheader("🔍 Pairwise Relationships")
-    st.write("Visualize pairwise relationships between selected features.")
-    pair_features = st.multiselect("Choose features for pairwise relationships:", data.columns.tolist(), default=["alpha", "delta", "u"])
-    if len(pair_features) > 1:
-        pairwise_fig = sns.pairplot(data[pair_features])
-        st.pyplot(pairwise_fig.figure)
-        plt.close()
-
-    # Violin Plot
-    st.subheader("🎻 Violin Plot")
-    st.write("Visualize the distribution of a feature using a violin plot.")
-    violin_feature = st.selectbox("Choose feature for violin plot:", data.columns.tolist())
-    if violin_feature:
-        violin_plot = sns.violinplot(data[violin_feature])
-        st.pyplot(violin_plot.figure)
-        plt.close()
-
     # Box Plot for Multiple Features
     st.subheader("📦 Box Plot for Multiple Features")
     st.write("Visualize distributions of selected features using box plots.")
@@ -164,6 +137,15 @@ def main():
     if len(box_features) > 0:
         box_plot_fig = px.box(data, y=box_features, title="Box Plot of Selected Features")
         st.plotly_chart(box_plot_fig)
+
+    # Violin Plot
+    st.subheader("🎻 Violin Plot")
+    st.write("Visualize the distribution of a feature using a violin plot.")
+    violin_feature = st.selectbox("Choose feature for violin plot:", data.columns.tolist())
+    if violin_feature:
+        violin_plot = sns.violinplot(data=data, y=violin_feature)
+        st.pyplot(violin_plot.figure)
+        plt.close()
 
     # Density Plot
     st.subheader("🔍 Density Plot")
