@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def main():
-    st.title("✨ Recommend")
+    st.title("Recommend")
     st.write("Recommendation system for similar star types will go here.")
     
     # Load dataset
@@ -12,10 +12,15 @@ def main():
 
     data = load_data()
 
-    # Example recommendation input and output
+    # Sidebar: Recommendation Inputs
     st.sidebar.header("Recommendation Inputs")
+
     star_type = st.sidebar.selectbox("Select a Star Type", ["Galaxy", "QSO", "Star"])
-    
+
+    # Place the button at the top of the sidebar
+    find_similar_stars = st.sidebar.button("Find Similar Stars")
+
+    # Define sliders
     alpha = st.sidebar.slider("Alpha", 0.0, 360.0, 180.0)
     delta = st.sidebar.slider("Delta", -90.0, 90.0, 0.0)
     u = st.sidebar.slider("u", 0.0, 30.0, 15.0)
@@ -24,8 +29,6 @@ def main():
     i = st.sidebar.slider("i", 0.0, 30.0, 15.0)
     z = st.sidebar.slider("z", 0.0, 30.0, 15.0)
     redshift = st.sidebar.slider("Redshift", 0.0, 10.0, 0.5)
-    
-    find_similar_stars = st.sidebar.button("Find Similar Stars")
     
     if find_similar_stars:
         # Filter the dataset based on star type
