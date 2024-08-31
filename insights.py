@@ -80,21 +80,7 @@ def main():
         st.plotly_chart(scatter_fig, use_container_width=True)
 
     # Model Predictions Analysis
-    st.subheader("🔮 Model Predictions Analysis")
-    st.write("Analyze the distribution of model predictions.")
-    st.write("Select features for prediction:")
-    features = st.multiselect("Choose features for prediction:", data.columns.tolist(), default=['alpha', 'delta', 'u'])
-    if len(features) > 0:
-        # Generate predictions
-        predictions = model.predict(data[features])
-        data['predictions'] = predictions
-        prediction_dist_fig = px.histogram(
-            data,
-            x='predictions',
-            title="Distribution of Model Predictions",
-            color_discrete_sequence=['lightcoral']
-        )
-        st.plotly_chart(prediction_dist_fig, use_container_width=True)
+    
 
     # ROC Curve
     st.subheader("📈 ROC Curve")
