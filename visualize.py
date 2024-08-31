@@ -71,20 +71,7 @@ def main():
  
 
     # Area Chart of Star Counts by `redshift`
-    st.subheader("📊 Star Counts by Redshift")
-    st.write("Area chart showing counts of stars grouped by `redshift` values.")
-    redshift_counts = data["redshift"].value_counts().reset_index()
-    redshift_counts.columns = ["redshift", "count"]  # Rename columns to match what Plotly expects
-    area_chart_fig = px.area(
-        redshift_counts,
-        x="redshift",
-        y="count",
-        title="Star Counts by Redshift",
-        labels={"redshift": "Redshift", "count": "Star Counts"}
-    )
-    st.plotly_chart(area_chart_fig)
 
-    # 3D Visualizations
 
 
     # Additional 2D and 3D Plots
