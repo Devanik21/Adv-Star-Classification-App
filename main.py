@@ -84,7 +84,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Theme Toggle
-theme = st.sidebar.radio("Choose your theme:", ["Light", "Dark"], help="Switch between light and dark modes.")
 
 if theme == "Dark":
     st.markdown("""
