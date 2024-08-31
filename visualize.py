@@ -3,21 +3,27 @@ import pandas as pd
 import plotly.express as px
 import seaborn as sns
 
-def load_data():
+def main():
+    st.title("📊 Visualize")
+    st.write("Explore various visualizations of star data to gain insights.")
+
+    # Load dataset
+    @st.cache_data
+    def load_data():
         try:
             return pd.read_csv("star_classification.csv")
         except Exception as e:
             st.error(f"Error loading data: {e}")
             return pd.DataFrame()  # Return empty DataFrame in case of error
- data = load_data()
- if data.empty:
-  st.stop()
 
-def main():
-    st.title("📊 Visualize")
-    st.write("Explore various visualizations of star data to gain insights.")
+    data = load_data()
 
+    if data.empty:
+        st.stop()
+
+    # Display column names to debug
    
+
     # Visualization 1: Interactive Histogram
     st.subheader("1. Interactive Histogram")
     st.write("Select a column to visualize its distribution.")
