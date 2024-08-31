@@ -86,7 +86,7 @@ def main():
                 <img src="https://via.placeholder.com/80" alt="AI">
                 <div>
                     <h4>AI</h4>
-                    <p>Advanced AI Copilot/p>
+                    <p>Advanced AI Copilot</p>
                 </div>
             </div>
         </div>
