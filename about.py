@@ -79,14 +79,14 @@ def main():
                 <img src="https://via.placeholder.com/80" alt="Devanik">
                 <div>
                     <h4>Devanik</h4>
-                    <p>Aspiring Data Scientist</p>
+                    <p>Aspiring AI Ops Engineer</p>
                 </div>
             </div>
             <div class="team-member">
                 <img src="https://via.placeholder.com/80" alt="AI">
                 <div>
-                    <h4>ChatGPT</h4>
-                    <p>AI Assistant</p>
+                    <h4>AI</h4>
+                    <p>Advanced AI Copilot/p>
                 </div>
             </div>
         </div>
