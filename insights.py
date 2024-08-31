@@ -83,16 +83,7 @@ def main():
         prediction_dist_fig = px.histogram(data, x='predictions', title="Distribution of Model Predictions")
         st.plotly_chart(prediction_dist_fig)
 
-    # Confusion Matrix
-    st.subheader("🔍 Confusion Matrix")
-    st.write("Visualize the confusion matrix of model predictions.")
-    if model:
-        # Dummy confusion matrix example
-        confusion_matrix = np.array([[50, 10], [5, 100]])  # Example data
-        confusion_matrix_fig = px.imshow(confusion_matrix, color_continuous_scale='Blues', title="Confusion Matrix")
-        st.plotly_chart(confusion_matrix_fig)
 
-    # ROC Curve
     st.subheader("📈 ROC Curve")
     st.write("Plot the ROC curve for model performance.")
     if model:
