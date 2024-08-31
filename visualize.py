@@ -92,17 +92,21 @@ def main():
     st.plotly_chart(line_chart_fig)
 
     # Visualization 10: Area Chart of Star Counts by `redshift`
+    # Visualization 10: Area Chart of Star Counts by `redshift`
     st.subheader("10. Star Counts by Redshift")
     st.write("Area chart showing counts of stars grouped by `redshift` values.")
-    redshift_counts = data["redshift"].value_counts().sort_index()
+# Correctly count the number of stars for each redshift value
+    redshift_counts = data["redshift"].value_counts().reset_index()
+    redshift_counts.columns = ["redshift", "count"]  # Rename columns to match what Plotly expects
     area_chart_fig = px.area(
-        redshift_counts.reset_index(),
-        x="index",
-        y="redshift",
-        title="Star Counts by Redshift",
-        labels={"index": "Redshift", "redshift": "Star Counts"}
-    )
+    redshift_counts,
+    x="redshift",
+    y="count",
+    title="Star Counts by Redshift",
+    labels={"redshift": "Redshift", "count": "Star Counts"}
+        )
     st.plotly_chart(area_chart_fig)
+
 
 if __name__ == "__main__":
     main()
