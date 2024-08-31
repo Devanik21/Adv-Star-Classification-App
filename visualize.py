@@ -127,6 +127,17 @@ def main():
        st.plotly_chart(scatter_reg_fig)
 
 
+     # Heatmap of Selected Features
+    st.subheader("🔥 Heatmap of Selected Features")
+    st.write("Select two columns to create a heatmap that visualizes the distribution of their values.")
+    x_column_heat = st.selectbox("Choose X-axis column for heatmap:", data.columns.tolist(), key="x_heatmap")
+    y_column_heat = st.selectbox("Choose Y-axis column for heatmap:", data.columns.tolist(), key="y_heatmap")
+    if x_column_heat and y_column_heat:
+      heatmap_data = pd.crosstab(data[x_column_heat], data[y_column_heat])
+      heatmap_fig = px.imshow(heatmap_data, text_auto=True, title=f"Heatmap of {x_column_heat} vs {y_column_heat}")
+      st.plotly_chart(heatmap_fig)
+
+
 
 if __name__ == "__main__":
     main()
