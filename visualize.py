@@ -68,11 +68,7 @@ def main():
     st.plotly_chart(pie_chart_fig)
 
     # Line Chart of Average `alpha` by Star Type
-    st.subheader("📈 Average Alpha by Star Type")
-    st.write("Line chart showing trends in `alpha` values by star type.")
-    avg_alpha_by_type = data.groupby("class")["alpha"].mean().reset_index()
-    line_chart_fig = px.line(avg_alpha_by_type, x="class", y="alpha", title="Average Alpha by Star Type")
-    st.plotly_chart(line_chart_fig)
+ 
 
     # Area Chart of Star Counts by `redshift`
     st.subheader("📊 Star Counts by Redshift")
