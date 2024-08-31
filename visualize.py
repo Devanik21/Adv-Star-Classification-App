@@ -98,12 +98,7 @@ def main():
         st.plotly_chart(line_plot_fig)
 
     # Histogram of Selected Columns
-    st.subheader("🖼️ Histogram of Selected Columns")
-    st.write("Select columns to visualize their distribution in a histogram.")
-    columns_histogram = st.multiselect("Choose columns for histogram:", data.columns.tolist(), default=["alpha", "delta"])
-    if len(columns_histogram) > 0:
-        histogram_fig = px.histogram(data, y=columns_histogram, nbins=20, title="Histogram of Selected Columns")
-        st.plotly_chart(histogram_fig)
+
 
     # Box Plot of Multiple Columns
     st.subheader("📊 Box Plot of Multiple Columns")
