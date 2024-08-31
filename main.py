@@ -99,7 +99,7 @@ page = st.sidebar.selectbox("Select a page", [
 ])
 
 # User Interaction: Ask for user's name and display a greeting
-user_name = st.text_input("Enter your name:", placeholder="What's your name?")
+user_name = st.text_input("Please enter your name:", placeholder=" Your name ")
 if user_name:
     st.markdown(f"### Welcome to the Star Classification App, {user_name}! 🌟")
 
