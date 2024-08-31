@@ -142,6 +142,66 @@ def main():
                 labels={"z": "z", "redshift": "Redshift", "distance": "Distance"}
             )
             st.plotly_chart(scatter_3d_z_redshift_distance)
+            
+            # Plot 4: alpha, g, r
+            scatter_3d_alpha_g_r = px.scatter_3d(
+                recommendations,
+                x="alpha",
+                y="g",
+                z="r",
+                color="distance",
+                title="3D Scatter Plot: Alpha vs g vs r",
+                labels={"alpha": "Alpha", "g": "g", "r": "r", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_alpha_g_r)
+            
+            # Plot 5: delta, i, z
+            scatter_3d_delta_i_z = px.scatter_3d(
+                recommendations,
+                x="delta",
+                y="i",
+                z="z",
+                color="distance",
+                title="3D Scatter Plot: Delta vs i vs z",
+                labels={"delta": "Delta", "i": "i", "z": "z", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_delta_i_z)
+            
+            # Plot 6: u, r, redshift
+            scatter_3d_u_r_redshift = px.scatter_3d(
+                recommendations,
+                x="u",
+                y="r",
+                z="redshift",
+                color="distance",
+                title="3D Scatter Plot: u vs r vs Redshift",
+                labels={"u": "u", "r": "r", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_u_r_redshift)
+            
+            # Plot 7: alpha, delta, redshift
+            scatter_3d_alpha_delta_redshift = px.scatter_3d(
+                recommendations,
+                x="alpha",
+                y="delta",
+                z="redshift",
+                color="distance",
+                title="3D Scatter Plot: Alpha vs Delta vs Redshift",
+                labels={"alpha": "Alpha", "delta": "Delta", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_alpha_delta_redshift)
+
+            # Plot 8: u, g, i
+            scatter_3d_u_g_i = px.scatter_3d(
+                recommendations,
+                x="u",
+                y="g",
+                z="i",
+                color="distance",
+                title="3D Scatter Plot: u vs g vs i",
+                labels={"u": "u", "g": "g", "i": "i", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_u_g_i)
 
             # Pair Plot of Features
             st.write("Pair plot of the features of recommended stars:")
