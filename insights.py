@@ -11,6 +11,7 @@ def main():
     st.write("Explore insights based on model predictions and data analysis.")
 
     # Load dataset
+    # Load dataset
     @st.cache_data
     def load_data():
         try:
@@ -20,7 +21,7 @@ def main():
             return pd.DataFrame()  # Return empty DataFrame in case of error
 
     data = load_data()
-
+    
     if data.empty:
         st.stop()
 
