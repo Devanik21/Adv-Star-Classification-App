@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit.components.v1 import html
 
 # Set page configuration once at the start
-st.set_page_config(page_title="Star Classification App", page_icon="🌟", layout="wide")
 
 # Custom CSS for advanced styling
 st.markdown("""
@@ -63,7 +62,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Display title and image
-st.markdown('<div class="page-title">Star Classification App</div>', unsafe_allow_html=True)
+st.markdown('<div class="page-title">Star Classification App</div>', page_icon="🌟",  unsafe_allow_html=True)
 st.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
 
 # Page selection with emojis
