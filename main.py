@@ -3,7 +3,7 @@ from streamlit.components.v1 import html
 
 # Set page configuration once at the start
 st.set_page_config(page_title="Star Classification App", page_icon="🌟", layout="wide")
-st.image('Galaxy.jpg', caption="Sunrise by the mountains")
+
 # Custom CSS for advanced styling
 st.markdown("""
     <style>
@@ -61,7 +61,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-
+st.image('Galaxy.jpg', caption="The cosmic canvas unfurls—a galaxy veiled in stardust")
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
     "🚀 Predict",
