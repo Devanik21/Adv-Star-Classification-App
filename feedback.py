@@ -3,8 +3,6 @@ import pandas as pd
 
 def main():
     # Set the page layout and background color
-    st.set_page_config(page_title="Feedback", layout="centered")
-    
     # Background color styling
     st.markdown(
         """
