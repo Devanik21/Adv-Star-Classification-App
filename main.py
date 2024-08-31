@@ -35,15 +35,6 @@ st.markdown("""
         .stButton button:hover {
             background-color: #0056b3;
         }
-        .page-title {
-            color: #007bff;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            padding: 10px;
-            border-bottom: 2px solid #007bff;
-        }
         .page-content {
             color: #333;
             font-size: 18px;
@@ -77,9 +68,6 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-
-# Display the title
-st.markdown('<div class="page-title">Star Classification App</div>', unsafe_allow_html=True)
 
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
