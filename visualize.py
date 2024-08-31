@@ -117,5 +117,16 @@ def main():
         box_plot_fig = px.box(data, y=columns_box, title="Box Plot of Selected Columns")
         st.plotly_chart(box_plot_fig)
 
+# Scatter Plot with Regression Line
+    st.subheader("📉 Scatter Plot with Regression Line")
+    st.write("Select two columns to visualize their relationship along with a regression line.")
+    x_column = st.selectbox("Choose X-axis column for scatter plot:", data.columns.tolist(), key="x_scatter")
+    y_column = st.selectbox("Choose Y-axis column for scatter plot:", data.columns.tolist(), key="y_scatter")
+    if x_column and y_column:
+       scatter_reg_fig = px.scatter(data, x=x_column, y=y_column, trendline="ols", title=f"Scatter Plot of {x_column} vs {y_column} with Regression Line")
+        st.plotly_chart(scatter_reg_fig)
+
+
+
 if __name__ == "__main__":
     main()
