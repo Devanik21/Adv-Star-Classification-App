@@ -9,8 +9,9 @@ def load_data():
         except Exception as e:
             st.error(f"Error loading data: {e}")
             return pd.DataFrame()  # Return empty DataFrame in case of error
-
-    data = load_data()
+ data = load_data()
+ if data.empty:
+  st.stop()
 
 def main():
     st.title("📊 Visualize")
