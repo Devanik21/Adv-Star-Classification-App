@@ -7,7 +7,7 @@ st.set_page_config(page_title="Star Classification App", page_icon="🌟", layou
 # Sidebar image
 st.sidebar.image("Universe_2.jpg", use_column_width=True)
 
-# Custom CSS for colorful styling
+# Custom CSS for colorful and interactive styling
 st.markdown("""
     <style>
         body {
@@ -66,8 +66,51 @@ st.markdown("""
         .footer a:hover {
             text-decoration: underline;
         }
+        .theme-toggle {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #ff6347;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .theme-toggle:hover {
+            background-color: #ff4500;
+        }
     </style>
 """, unsafe_allow_html=True)
+
+# Theme Toggle
+theme = st.sidebar.radio("Choose your theme:", ["Light", "Dark"], help="Switch between light and dark modes.")
+
+if theme == "Dark":
+    st.markdown("""
+        <style>
+            body {
+                background-color: #333;
+                color: #fff;
+            }
+            .sidebar .sidebar-content {
+                background-color: #444;
+            }
+            .stSidebar .stSelectbox div {
+                color: #21b51f;
+            }
+            .stButton button {
+                background-color: #444;
+                color: white;
+            }
+            .stButton button:hover {
+                background-color: #0056b3;
+            }
+            .page-content {
+                color: #ddd;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
@@ -80,6 +123,11 @@ page = st.sidebar.selectbox("Select a page", [
     "📝 Feedback",
     "📚 About"
 ])
+
+# User Interaction: Ask for user's name and display a greeting
+user_name = st.text_input("Enter your name:", placeholder="What's your name?")
+if user_name:
+    st.markdown(f"### Welcome to the Star Classification App, {user_name}! 🌟")
 
 # Load the appropriate page based on the selection
 if page == "🚀 Predict":
