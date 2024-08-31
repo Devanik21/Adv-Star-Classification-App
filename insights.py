@@ -158,7 +158,7 @@ def main():
     y_bubble = st.selectbox("Choose feature for Y axis (Bubble Chart):", data.columns.tolist())
     size_bubble = st.selectbox("Choose feature for Bubble Size:", data.columns.tolist())
     if x_bubble and y_bubble and size_bubble:
-    bubble_fig = px.scatter(
+      bubble_fig = px.scatter(
         data,
         x=x_bubble,
         y=y_bubble,
