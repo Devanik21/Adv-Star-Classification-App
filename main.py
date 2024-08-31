@@ -21,7 +21,7 @@ st.markdown("""
             font-weight: bold;
         }
         .stButton button {
-            background-color: #007bff;
+            background-color: #b5d5f7;
             color: white;
             border: none;
             border-radius: 8px;
