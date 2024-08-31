@@ -3,7 +3,8 @@ import pandas as pd
 
 def main():
     # Set the page layout and background color
-   
+    st.set_page_config(page_title="Feedback", layout="centered")
+    
     # Background color styling
     st.markdown(
         """
@@ -11,28 +12,20 @@ def main():
         .stApp {
             background-color: #000000;
         }
-        .slider-wrapper {
+        .slider-container {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .slider {
-            width: 80%;
-            margin: 20px 0;
-        }
-        .star-rating {
+        .slider-labels {
             display: flex;
-            justify-content: center;
-            margin: 20px 0;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0 20px;
+            font-size: 1.2rem;
         }
         .star {
             font-size: 2rem;
-            color: #dcdcdc;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .star.selected,
-        .star:hover {
             color: #ffd700;
         }
         </style>
@@ -68,17 +61,21 @@ def main():
     feedback_length = len(feedback)
     st.markdown(f"Character count: **{feedback_length}**")
 
-    # Modern Rating System using Slider and Stars
+    # Modern Rating System using Select Slider
     st.markdown("<h4 style='color: #4682b4;'>⭐ Rate your experience</h4>", unsafe_allow_html=True)
     
-    rating = st.slider("", 1, 5, 3, step=1, format="⭐", key="rating")
+   
     
-    # Display stars as selected based on rating
-    stars = " ".join("⭐" * i for i in range(1, 6))
-    st.markdown(
-        f"<div class='star-rating'>{stars}</div>",
-        unsafe_allow_html=True
+    # Create a select slider with star labels
+    rating = st.select_slider(
+        "",
+        options=star_labels,
+        value="3⭐",
+        format_func=lambda x: x
     )
+
+    # Extract numerical rating from selected label
+    numeric_rating = int(rating.replace("⭐", "").strip())
 
     # Checkbox for Consent
     consent = st.checkbox("I agree to the terms and conditions")
@@ -92,7 +89,7 @@ def main():
                 "Name": [name],
                 "Email": [email],
                 "Feedback": [feedback],
-                "Rating": [rating]
+                "Rating": [numeric_rating]
             }
             df = pd.DataFrame(feedback_data)
             st.write("Here's a preview of your feedback:")
