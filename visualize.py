@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 def main():
     st.title("📊 Visualize")
@@ -21,37 +22,35 @@ def main():
     if data.empty:
         st.stop()
 
-    # Display column names to debug
-   
+    # 2D Visualizations
 
-    # Visualization 1: Interactive Histogram
-    st.subheader("1. Interactive Histogram")
+    # Interactive Histogram
+    st.subheader("🖼️ Interactive Histogram")
     st.write("Select a column to visualize its distribution.")
     column = st.selectbox("Choose column for histogram:", data.columns.tolist())
     if column:
         histogram_fig = px.histogram(data, x=column, nbins=20, title=f"Histogram of {column}")
         st.plotly_chart(histogram_fig)
 
-    # Visualization 2: Box Plot of Selected Column
-    st.subheader("2. Box Plot of Selected Column")
+    # Box Plot of Selected Column
+    st.subheader("📊 Box Plot of Selected Column")
     st.write("Select a column to show the distribution.")
     column_box = st.selectbox("Choose column for box plot:", data.columns.tolist())
     if column_box:
         box_plot = px.box(data, y=column_box, title=f"Box Plot of {column_box}")
         st.plotly_chart(box_plot)
 
-    # Visualization 3: Pair Plot of Selected Columns
-    st.subheader("3. Pair Plot of Selected Columns")
-    st.write("Select columns to visualize pair relationships.")
-    columns_pair = st.multiselect("Choose columns for pair plot:", data.columns.tolist(), default=["alpha", "delta", "u"])
-    if len(columns_pair) > 1:
-        pair_plot_fig = sns.pairplot(data[columns_pair])
-        st.pyplot(pair_plot_fig)
-    else:
-        st.warning("Select at least two columns for pair plot.")
+    # Violin Plot of Selected Column
+    st.subheader("🎻 Violin Plot of Selected Column")
+    st.write("Select a column to visualize its distribution using a violin plot.")
+    column_violin = st.selectbox("Choose column for violin plot:", data.columns.tolist())
+    if column_violin:
+        violin_plot = sns.violinplot(data[column_violin])
+        st.pyplot(violin_plot.figure)
+        plt.close()  # Close the figure to avoid display issues
 
-    # Visualization 4: Correlation Heatmap
-    st.subheader("4. Feature Correlation Heatmap")
+    # Correlation Heatmap
+    st.subheader("🌡️ Feature Correlation Heatmap")
     st.write("Select columns to show correlations.")
     columns_heatmap = st.multiselect("Choose columns for correlation heatmap:", data.columns.tolist(), default=["alpha", "delta", "u", "g", "r", "i", "z", "redshift"])
     if len(columns_heatmap) > 1:
@@ -61,22 +60,22 @@ def main():
     else:
         st.warning("Select at least two columns for correlation heatmap.")
 
-    # Visualization 5: Pie Chart of Star Types
-    st.subheader("5. Star Type Distribution")
+    # Pie Chart of Star Types
+    st.subheader("🥧 Star Type Distribution")
     st.write("Pie chart showing the distribution of star types.")
     star_type_dist = data["class"].value_counts()
     pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Star Type Distribution")
     st.plotly_chart(pie_chart_fig)
 
-    # Visualization 6: Line Chart of Average `alpha` by Star Type
-    st.subheader("6. Average Alpha by Star Type")
+    # Line Chart of Average `alpha` by Star Type
+    st.subheader("📈 Average Alpha by Star Type")
     st.write("Line chart showing trends in `alpha` values by star type.")
     avg_alpha_by_type = data.groupby("class")["alpha"].mean().reset_index()
     line_chart_fig = px.line(avg_alpha_by_type, x="class", y="alpha", title="Average Alpha by Star Type")
     st.plotly_chart(line_chart_fig)
 
-    # Visualization 7: Area Chart of Star Counts by `redshift`
-    st.subheader("7. Star Counts by Redshift")
+    # Area Chart of Star Counts by `redshift`
+    st.subheader("📊 Star Counts by Redshift")
     st.write("Area chart showing counts of stars grouped by `redshift` values.")
     redshift_counts = data["redshift"].value_counts().reset_index()
     redshift_counts.columns = ["redshift", "count"]  # Rename columns to match what Plotly expects
@@ -88,6 +87,108 @@ def main():
         labels={"redshift": "Redshift", "count": "Star Counts"}
     )
     st.plotly_chart(area_chart_fig)
+
+    # 3D Visualizations
+
+    # 3D Scatter Plot of `alpha`, `delta`, and `u`
+    st.subheader("🔮 3D Scatter Plot: Alpha vs Delta vs u")
+    st.write("3D scatter plot of `alpha`, `delta`, and `u`.")
+    scatter_3d_alpha_delta_u = px.scatter_3d(
+        data,
+        x="alpha",
+        y="delta",
+        z="u",
+        title="3D Scatter Plot: Alpha vs Delta vs u"
+    )
+    st.plotly_chart(scatter_3d_alpha_delta_u)
+
+    # 3D Scatter Plot of `g`, `r`, and `i`
+    st.subheader("🔭 3D Scatter Plot: g vs r vs i")
+    st.write("3D scatter plot of `g`, `r`, and `i`.")
+    scatter_3d_gri = px.scatter_3d(
+        data,
+        x="g",
+        y="r",
+        z="i",
+        title="3D Scatter Plot: g vs r vs i"
+    )
+    st.plotly_chart(scatter_3d_gri)
+
+    # 3D Scatter Plot of `z`, `redshift`, and `alpha`
+    st.subheader("🌀 3D Scatter Plot: z vs Redshift vs Alpha")
+    st.write("3D scatter plot of `z`, `redshift`, and `alpha`.")
+    scatter_3d_z_redshift_alpha = px.scatter_3d(
+        data,
+        x="z",
+        y="redshift",
+        z="alpha",
+        title="3D Scatter Plot: z vs Redshift vs Alpha"
+    )
+    st.plotly_chart(scatter_3d_z_redshift_alpha)
+
+    # Additional 3D Scatter Plots
+
+    # 3D Scatter Plot of `u`, `r`, and `i`
+    st.subheader("🌟 3D Scatter Plot: u vs r vs i")
+    st.write("3D scatter plot of `u`, `r`, and `i`.")
+    scatter_3d_uri = px.scatter_3d(
+        data,
+        x="u",
+        y="r",
+        z="i",
+        title="3D Scatter Plot: u vs r vs i"
+    )
+    st.plotly_chart(scatter_3d_uri)
+
+    # 3D Scatter Plot of `alpha`, `z`, and `g`
+    st.subheader("🌠 3D Scatter Plot: Alpha vs z vs g")
+    st.write("3D scatter plot of `alpha`, `z`, and `g`.")
+    scatter_3d_alpha_z_g = px.scatter_3d(
+        data,
+        x="alpha",
+        y="z",
+        z="g",
+        title="3D Scatter Plot: Alpha vs z vs g"
+    )
+    st.plotly_chart(scatter_3d_alpha_z_g)
+
+    # 3D Scatter Plot of `delta`, `redshift`, and `r`
+    st.subheader("💫 3D Scatter Plot: Delta vs Redshift vs r")
+    st.write("3D scatter plot of `delta`, `redshift`, and `r`.")
+    scatter_3d_delta_redshift_r = px.scatter_3d(
+        data,
+        x="delta",
+        y="redshift",
+        z="r",
+        title="3D Scatter Plot: Delta vs Redshift vs r"
+    )
+    st.plotly_chart(scatter_3d_delta_redshift_r)
+
+    # Additional 2D and 3D Plots
+
+    # Line Plot of Selected Columns
+    st.subheader("📈 Line Plot of Selected Columns")
+    st.write("Select columns to visualize their trends over the index.")
+    columns_line = st.multiselect("Choose columns for line plot:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_line) > 0:
+        line_plot_fig = px.line(data, y=columns_line, title="Line Plot of Selected Columns")
+        st.plotly_chart(line_plot_fig)
+
+    # Histogram of Selected Columns
+    st.subheader("🖼️ Histogram of Selected Columns")
+    st.write("Select columns to visualize their distribution in a histogram.")
+    columns_histogram = st.multiselect("Choose columns for histogram:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_histogram) > 0:
+        histogram_fig = px.histogram(data, y=columns_histogram, nbins=20, title="Histogram of Selected Columns")
+        st.plotly_chart(histogram_fig)
+
+    # Box Plot of Multiple Columns
+    st.subheader("📊 Box Plot of Multiple Columns")
+    st.write("Select columns to show their distributions using box plots.")
+    columns_box = st.multiselect("Choose columns for box plot:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_box) > 0:
+        box_plot_fig = px.box(data, y=columns_box, title="Box Plot of Selected Columns")
+        st.plotly_chart(box_plot_fig)
 
 if __name__ == "__main__":
     main()
