@@ -3,6 +3,8 @@ import pandas as pd
 
 def main():
     # Set the page layout and background color
+    st.set_page_config(page_title="Feedback", layout="centered")
+    
     # Background color styling
     st.markdown(
         """
@@ -10,22 +12,29 @@ def main():
         .stApp {
             background-color: #000000;
         }
-        .rating-container {
+        .slider-wrapper {
             display: flex;
             align-items: center;
+            justify-content: center;
+        }
+        .slider {
+            width: 80%;
+            margin: 20px 0;
+        }
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
         }
         .star {
             font-size: 2rem;
-            color: #ffd700;
+            color: #dcdcdc;
             cursor: pointer;
             transition: color 0.3s;
         }
-        .star:hover,
-        .star.selected {
-            color: #ffb700;
-        }
-        .star.empty {
-            color: #dcdcdc;
+        .star.selected,
+        .star:hover {
+            color: #ffd700;
         }
         </style>
         """,
@@ -60,9 +69,17 @@ def main():
     feedback_length = len(feedback)
     st.markdown(f"Character count: **{feedback_length}**")
 
-    # Modern Rating System
+    # Modern Rating System using Slider and Stars
     st.markdown("<h4 style='color: #4682b4;'>⭐ Rate your experience</h4>", unsafe_allow_html=True)
-    rating = st.slider("", 1, 5, 3, format="⭐", key="rating")
+    
+    rating = st.slider("", 1, 5, 3, step=1, format="⭐", key="rating")
+    
+    # Display stars as selected based on rating
+    stars = " ".join("⭐" * i for i in range(1, 6))
+    st.markdown(
+        f"<div class='star-rating'>{stars}</div>",
+        unsafe_allow_html=True
+    )
 
     # Checkbox for Consent
     consent = st.checkbox("I agree to the terms and conditions")
