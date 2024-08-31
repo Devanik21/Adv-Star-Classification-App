@@ -164,5 +164,31 @@ def main():
     )
     st.plotly_chart(scatter_3d_delta_redshift_r)
 
+    # Additional 2D and 3D Plots
+
+    # Line Plot of Selected Columns
+    st.subheader("📈 Line Plot of Selected Columns")
+    st.write("Select columns to visualize their trends over the index.")
+    columns_line = st.multiselect("Choose columns for line plot:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_line) > 0:
+        line_plot_fig = px.line(data, y=columns_line, title="Line Plot of Selected Columns")
+        st.plotly_chart(line_plot_fig)
+
+    # Histogram of Selected Columns
+    st.subheader("🖼️ Histogram of Selected Columns")
+    st.write("Select columns to visualize their distribution in a histogram.")
+    columns_histogram = st.multiselect("Choose columns for histogram:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_histogram) > 0:
+        histogram_fig = px.histogram(data, y=columns_histogram, nbins=20, title="Histogram of Selected Columns")
+        st.plotly_chart(histogram_fig)
+
+    # Box Plot of Multiple Columns
+    st.subheader("📊 Box Plot of Multiple Columns")
+    st.write("Select columns to show their distributions using box plots.")
+    columns_box = st.multiselect("Choose columns for box plot:", data.columns.tolist(), default=["alpha", "delta"])
+    if len(columns_box) > 0:
+        box_plot_fig = px.box(data, y=columns_box, title="Box Plot of Selected Columns")
+        st.plotly_chart(box_plot_fig)
+
 if __name__ == "__main__":
     main()
