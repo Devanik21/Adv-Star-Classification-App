@@ -22,11 +22,17 @@ def main():
     if data.empty:
         st.stop()
 
+    # Display column names to debug
+    st.write("Columns in dataset:", data.columns.tolist())
+
     # Visualization 1: Histogram of Distances
-    st.subheader("1. Distance Distribution")
-    st.write("Histogram showing the distribution of distances among stars.")
-    distance_fig = px.histogram(data, x="distance", nbins=20, title="Histogram of Distances")
-    st.plotly_chart(distance_fig)
+    if 'distance' in data.columns:
+        st.subheader("1. Distance Distribution")
+        st.write("Histogram showing the distribution of distances among stars.")
+        distance_fig = px.histogram(data, x="distance", nbins=20, title="Histogram of Distances")
+        st.plotly_chart(distance_fig)
+    else:
+        st.warning("Column 'distance' not found in the dataset.")
 
     # Visualization 2: Box Plot of `alpha` Values
     st.subheader("2. Box Plot of Alpha Values")
@@ -62,7 +68,7 @@ def main():
         x="alpha",
         y="delta",
         z="u",
-        color="distance",
+        color="distance" if 'distance' in data.columns else None,
         title="3D Scatter Plot: Alpha vs Delta vs u"
     )
     st.plotly_chart(scatter_3d_alpha_delta_u)
@@ -75,7 +81,7 @@ def main():
         x="g",
         y="r",
         z="i",
-        color="distance",
+        color="distance" if 'distance' in data.columns else None,
         title="3D Scatter Plot: g vs r vs i"
     )
     st.plotly_chart(scatter_3d_gri)
@@ -87,8 +93,8 @@ def main():
         data,
         x="z",
         y="redshift",
-        z="distance",
-        color="distance",
+        z="distance" if 'distance' in data.columns else None,
+        color="distance" if 'distance' in data.columns else None,
         title="3D Scatter Plot: z vs Redshift vs Distance"
     )
     st.plotly_chart(scatter_3d_z_redshift_distance)
