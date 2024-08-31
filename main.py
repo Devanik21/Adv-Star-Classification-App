@@ -7,11 +7,11 @@ st.set_page_config(page_title="Star Classification App", page_icon="🌟", layou
 # Sidebar image
 st.sidebar.image("Universe_2.jpg", use_column_width=True)
 
-# Custom CSS for advanced styling
+# Custom CSS for colorful styling
 st.markdown("""
     <style>
         body {
-            background-color: #f0f4f8;
+            background-color: #e6f7ff;
             font-family: 'Arial', sans-serif;
             margin: 0;
         }
@@ -20,11 +20,11 @@ st.markdown("""
             padding: 20px;
         }
         .stSidebar .stSelectbox div {
-            color: #c73b04;
+            color: #ff6347;
             font-weight: bold;
         }
         .stButton button {
-            background-color: #b5d5f7;
+            background-color: #ff6347;
             color: white;
             border: none;
             border-radius: 8px;
@@ -33,7 +33,7 @@ st.markdown("""
             transition: background-color 0.3s ease;
         }
         .stButton button:hover {
-            background-color: #0056b3;
+            background-color: #ff4500;
         }
         .page-content {
             color: #333;
@@ -49,7 +49,7 @@ st.markdown("""
             text-align: center;
             padding: 15px;
             background-color: #333;
-            color: #97c769;
+            color: #ff6347;
             border-radius: 8px;
             margin-top: 40px;
             font-size: 14px;
@@ -59,7 +59,7 @@ st.markdown("""
             font-size: 16px;
         }
         .footer a {
-            color: #58a6ff;
+            color: #1e90ff;
             text-decoration: none;
             font-weight: bold;
         }
@@ -110,7 +110,7 @@ elif page == "📚 About":
 # Display the main image below the title
 st.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
 
-# Adding a footer with professional styling
+# Adding a footer with colorful styling
 st.markdown("""
     <div class="footer">
         <p>Made with ❤️ by Devanik + Niki</p>
