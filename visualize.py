@@ -124,7 +124,7 @@ def main():
     y_column = st.selectbox("Choose Y-axis column for scatter plot:", data.columns.tolist(), key="y_scatter")
     if x_column and y_column:
        scatter_reg_fig = px.scatter(data, x=x_column, y=y_column, trendline="ols", title=f"Scatter Plot of {x_column} vs {y_column} with Regression Line")
-        st.plotly_chart(scatter_reg_fig)
+       st.plotly_chart(scatter_reg_fig)
 
 
 
