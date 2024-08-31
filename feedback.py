@@ -64,6 +64,7 @@ def main():
     st.markdown("<h4 style='color: #4682b4;'>⭐ Rate your experience</h4>", unsafe_allow_html=True)
     
    
+    star_labels = [f"{i}⭐" for i in range(1, 6)]
     
     # Create a select slider with star labels
     rating = st.select_slider(
