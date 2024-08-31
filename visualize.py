@@ -26,19 +26,13 @@ def main():
     st.write("Columns in dataset:", data.columns.tolist())
 
     # Visualization 1: Histogram of Distances
-    st.warning("Column 'distance' not found in the dataset, skipping Distance Distribution visualization.")
-
+  
     # Visualization 2: Box Plot of `alpha` Values
     st.subheader("2. Box Plot of Alpha Values")
     st.write("Box plot to show the distribution of `alpha` values.")
     alpha_box_plot = px.box(data, y="alpha", title="Box Plot of Alpha Values")
     st.plotly_chart(alpha_box_plot)
 
-    # Visualization 3: Pair Plot
-    st.subheader("3. Pair Plot of Features")
-    st.write("Pair plot to show relationships between various features.")
-    pair_plot_fig = sns.pairplot(data[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]])
-    st.pyplot(pair_plot_fig)
 
     # Visualization 4: Correlation Heatmap
     st.subheader("4. Feature Correlation Heatmap")
