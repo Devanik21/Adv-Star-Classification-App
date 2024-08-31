@@ -33,7 +33,7 @@ st.markdown("""
             transition: background-color 0.3s ease;
         }
         .stButton button:hover {
-            background-color: #ff4500;
+            background-color: #ffffff;
         }
         .page-content {
             color: #333;
