@@ -9,7 +9,7 @@ def main():
     st.write("Explore various visualizations of star data to gain insights.")
 
     # Load dataset
-    @st.cache_data
+    @st.cache
     def load_data():
         try:
             return pd.read_csv("star_classification.csv")
@@ -26,19 +26,13 @@ def main():
     st.write("Columns in dataset:", data.columns.tolist())
 
     # Visualization 1: Histogram of Distances
-    st.warning("Column 'distance' not found in the dataset, skipping Distance Distribution visualization.")
-
+  
     # Visualization 2: Box Plot of `alpha` Values
     st.subheader("2. Box Plot of Alpha Values")
     st.write("Box plot to show the distribution of `alpha` values.")
     alpha_box_plot = px.box(data, y="alpha", title="Box Plot of Alpha Values")
     st.plotly_chart(alpha_box_plot)
 
-    # Visualization 3: Pair Plot
-    st.subheader("3. Pair Plot of Features")
-    st.write("Pair plot to show relationships between various features.")
-    pair_plot_fig = sns.pairplot(data[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]])
-    st.pyplot(pair_plot_fig)
 
     # Visualization 4: Correlation Heatmap
     st.subheader("4. Feature Correlation Heatmap")
@@ -98,18 +92,21 @@ def main():
     st.plotly_chart(line_chart_fig)
 
     # Visualization 10: Area Chart of Star Counts by `redshift`
+    # Visualization 10: Area Chart of Star Counts by `redshift`
     st.subheader("10. Star Counts by Redshift")
     st.write("Area chart showing counts of stars grouped by `redshift` values.")
+# Correctly count the number of stars for each redshift value
     redshift_counts = data["redshift"].value_counts().reset_index()
     redshift_counts.columns = ["redshift", "count"]  # Rename columns to match what Plotly expects
     area_chart_fig = px.area(
-        redshift_counts,
-        x="redshift",
-        y="count",
-        title="Star Counts by Redshift",
-        labels={"redshift": "Redshift", "count": "Star Counts"}
-    )
+    redshift_counts,
+    x="redshift",
+    y="count",
+    title="Star Counts by Redshift",
+    labels={"redshift": "Redshift", "count": "Star Counts"}
+        )
     st.plotly_chart(area_chart_fig)
+
 
 if __name__ == "__main__":
     main()
