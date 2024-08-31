@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 def main():
     st.title("📊 Visualize")
@@ -39,15 +40,14 @@ def main():
         box_plot = px.box(data, y=column_box, title=f"Box Plot of {column_box}")
         st.plotly_chart(box_plot)
 
-    # Pair Plot of Selected Columns
-    st.subheader("🔗 Pair Plot of Selected Columns")
-    st.write("Select columns to visualize pair relationships.")
-    columns_pair = st.multiselect("Choose columns for pair plot:", data.columns.tolist(), default=["alpha", "delta", "u"])
-    if len(columns_pair) > 1:
-        pair_plot_fig = sns.pairplot(data[columns_pair])
-        st.pyplot(pair_plot_fig)
-    else:
-        st.warning("Select at least two columns for pair plot.")
+    # Violin Plot of Selected Column
+    st.subheader("🎻 Violin Plot of Selected Column")
+    st.write("Select a column to visualize its distribution using a violin plot.")
+    column_violin = st.selectbox("Choose column for violin plot:", data.columns.tolist())
+    if column_violin:
+        violin_plot = sns.violinplot(data[column_violin])
+        st.pyplot(violin_plot.figure)
+        plt.close()  # Close the figure to avoid display issues
 
     # Correlation Heatmap
     st.subheader("🌡️ Feature Correlation Heatmap")
