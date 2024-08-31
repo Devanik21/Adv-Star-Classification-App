@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit.components.v1 import html
 
 # Set page configuration once at the start
 st.set_page_config(page_title="Star Classification App", page_icon="🌟", layout="wide")
@@ -7,11 +8,11 @@ st.set_page_config(page_title="Star Classification App", page_icon="🌟", layou
 st.markdown("""
     <style>
         body {
-            background-color: #f0f4f8;
+            background-color: #0d1117;
             font-family: 'Arial', sans-serif;
         }
         .sidebar .sidebar-content {
-            background-color: #f7f7f7;
+            background-color: #161b22;
         }
         .stSidebar .stSelectbox div {
             color: #78b2f0;
@@ -23,25 +24,42 @@ st.markdown("""
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .stButton button:hover {
             background-color: #0056b3;
         }
         .page-title {
-            color: #007bff;
+            color: #58a6ff;
             font-size: 24px;
             font-weight: bold;
+            margin-bottom: 10px;
         }
         .page-content {
-            color: #333;
+            color: #c9d1d9;
             font-size: 18px;
+            line-height: 1.6;
         }
         .emoji {
             font-size: 30px;
             vertical-align: middle;
         }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #161b22;
+            color: #97c769;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer p {
+            margin: 0;
+        }
     </style>
 """, unsafe_allow_html=True)
+
+# Dynamic loading indicator
+loading_indicator = st.empty()
 
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
@@ -55,7 +73,8 @@ page = st.sidebar.selectbox("Select a page", [
     "📚 About"
 ])
 
-# Load the appropriate page based on the selection
+# Load the appropriate page with a loading indicator
+loading_indicator.markdown("⏳ Loading...")
 if page == "🚀 Predict":
     import predict
     predict.main()
@@ -81,11 +100,16 @@ elif page == "📚 About":
     import about
     about.main()
 
-# Adding a footer
-st.markdown("""
-    <div style="text-align: center; padding: 10px; background-color: #333; color: #97c769; border-radius: 5px;">
-        <p style="margin: 0;">Made with ❤️ by Devanik + AI</p>
+loading_indicator.empty()
+
+# Adding a footer with interactive elements
+footer_html = """
+    <div class="footer">
+        <p>Made with ❤️ by Devanik + Niki</p>
+        <p>
+            <a href="https://github.com/yourusername/star-classification-app" target="_blank" style="color: #58a6ff;">GitHub Repo</a> | 
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" style="color: #58a6ff;">LinkedIn</a>
+        </p>
     </div>
-""", unsafe_allow_html=True)
-
-
+"""
+html(footer_html)
