@@ -105,11 +105,12 @@ loading_indicator.empty()
 # Adding a footer with interactive elements
 footer_html = """
     <div class="footer">
-        <p>Made with ❤️ by Devanik + Niki</p>
+        <p style="color: #333;">Made with ❤️ by Devanik + Niki</p>
         <p>
-            <a href="https://github.com/Devanik21" target="_blank" style="color: #58a6ff;">GitHub</a> | 
-           
+            <a href="https://github.com/Devanik21" target="_blank" style="color: #58a6ff;">GitHub</a>
         </p>
     </div>
 """
 html(footer_html)
+
+
