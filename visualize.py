@@ -26,13 +26,7 @@ def main():
     st.write("Columns in dataset:", data.columns.tolist())
 
     # Visualization 1: Histogram of Distances
-    if 'distance' in data.columns:
-        st.subheader("1. Distance Distribution")
-        st.write("Histogram showing the distribution of distances among stars.")
-        distance_fig = px.histogram(data, x="distance", nbins=20, title="Histogram of Distances")
-        st.plotly_chart(distance_fig)
-    else:
-        st.warning("Column 'distance' not found in the dataset.")
+    st.warning("Column 'distance' not found in the dataset, skipping Distance Distribution visualization.")
 
     # Visualization 2: Box Plot of `alpha` Values
     st.subheader("2. Box Plot of Alpha Values")
@@ -68,7 +62,6 @@ def main():
         x="alpha",
         y="delta",
         z="u",
-        color="distance" if 'distance' in data.columns else None,
         title="3D Scatter Plot: Alpha vs Delta vs u"
     )
     st.plotly_chart(scatter_3d_alpha_delta_u)
@@ -81,23 +74,21 @@ def main():
         x="g",
         y="r",
         z="i",
-        color="distance" if 'distance' in data.columns else None,
         title="3D Scatter Plot: g vs r vs i"
     )
     st.plotly_chart(scatter_3d_gri)
 
-    # Visualization 8: 3D Scatter Plot of `z`, `redshift`, and `distance`
-    st.subheader("8. 3D Scatter Plot: z vs Redshift vs Distance")
-    st.write("3D scatter plot of `z`, `redshift`, and `distance`.")
-    scatter_3d_z_redshift_distance = px.scatter_3d(
+    # Visualization 8: 3D Scatter Plot of `z`, `redshift`, and `alpha`
+    st.subheader("8. 3D Scatter Plot: z vs Redshift vs Alpha")
+    st.write("3D scatter plot of `z`, `redshift`, and `alpha`.")
+    scatter_3d_z_redshift_alpha = px.scatter_3d(
         data,
         x="z",
         y="redshift",
-        z="distance" if 'distance' in data.columns else None,
-        color="distance" if 'distance' in data.columns else None,
-        title="3D Scatter Plot: z vs Redshift vs Distance"
+        z="alpha",
+        title="3D Scatter Plot: z vs Redshift vs Alpha"
     )
-    st.plotly_chart(scatter_3d_z_redshift_distance)
+    st.plotly_chart(scatter_3d_z_redshift_alpha)
 
     # Visualization 9: Line Chart of Average `alpha` by Star Type
     st.subheader("9. Average Alpha by Star Type")
