@@ -137,6 +137,15 @@ def main():
       heatmap_fig = px.imshow(heatmap_data, text_auto=True, title=f"Heatmap of {x_column_heat} vs {y_column_heat}")
       st.plotly_chart(heatmap_fig)
 
+   # Bubble Chart
+    st.subheader("🔵 Bubble Chart")
+    st.write("Select columns for X-axis, Y-axis, and bubble size.")
+    x_bubble = st.selectbox("Choose X-axis column for bubble chart:", data.columns.tolist(), key="x_bubble")
+    y_bubble = st.selectbox("Choose Y-axis column for bubble chart:", data.columns.tolist(), key="y_bubble")
+    size_bubble = st.selectbox("Choose column for bubble size:", data.columns.tolist(), key="size_bubble")
+    if x_bubble and y_bubble and size_bubble:
+      bubble_chart_fig = px.scatter(data, x=x_bubble, y=y_bubble, size=size_bubble, title=f"Bubble Chart of {x_bubble} vs {y_bubble}")
+      st.plotly_chart(bubble_chart_fig)
 
 
 if __name__ == "__main__":
