@@ -20,7 +20,7 @@ st.markdown("""
             padding: 20px;
         }
         .stSidebar .stSelectbox div {
-            color: #ff6347;
+            color: #cc2b0e;
             font-weight: bold;
         }
         .stButton button {
