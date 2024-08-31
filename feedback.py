@@ -3,13 +3,31 @@ import pandas as pd
 
 def main():
     # Set the page layout and background color
-
+    st.set_page_config(page_title="Feedback", layout="centered")
+    
     # Background color styling
     st.markdown(
         """
         <style>
         .stApp {
             background-color: #000000;
+        }
+        .rating-container {
+            display: flex;
+            align-items: center;
+        }
+        .star {
+            font-size: 2rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .star:hover,
+        .star.selected {
+            color: #ffb700;
+        }
+        .star.empty {
+            color: #dcdcdc;
         }
         </style>
         """,
@@ -44,9 +62,10 @@ def main():
     feedback_length = len(feedback)
     st.markdown(f"Character count: **{feedback_length}**")
 
-    # Slider for Feedback Rating
-    rating = st.slider("⭐ Rate your experience", 1, 5, 3)
-    
+    # Modern Rating System
+    st.markdown("<h4 style='color: #4682b4;'>⭐ Rate your experience</h4>", unsafe_allow_html=True)
+    rating = st.slider("", 1, 5, 3, format="⭐", key="rating")
+
     # Checkbox for Consent
     consent = st.checkbox("I agree to the terms and conditions")
 
