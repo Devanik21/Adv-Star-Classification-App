@@ -61,7 +61,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-st.image('Galaxy.jpg', caption="The cosmic canvas unfurls—a galaxy veiled in stardust")
+
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
     "🚀 Predict",
