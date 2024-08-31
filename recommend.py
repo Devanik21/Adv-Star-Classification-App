@@ -104,19 +104,45 @@ def main():
             distance_fig = px.histogram(recommendations, x="distance", nbins=20, title="Distance Distribution of Recommended Stars")
             st.plotly_chart(distance_fig)
 
-            # Interactive 3D Scatter Plot
-            st.write("3D scatter plot of selected features:")
-            scatter_3d_fig = px.scatter_3d(
+            # Interactive 3D Scatter Plots
+            st.write("3D scatter plots of selected features:")
+            
+            # Plot 1: alpha, delta, u
+            scatter_3d_alpha_delta_u = px.scatter_3d(
                 recommendations,
                 x="alpha",
                 y="delta",
-                z="redshift",
+                z="u",
                 color="distance",
-                title="3D Scatter Plot of Recommended Stars",
-                labels={"alpha": "Alpha", "delta": "Delta", "redshift": "Redshift", "distance": "Distance"}
+                title="3D Scatter Plot: Alpha vs Delta vs u",
+                labels={"alpha": "Alpha", "delta": "Delta", "u": "u", "distance": "Distance"}
             )
-            st.plotly_chart(scatter_3d_fig)
+            st.plotly_chart(scatter_3d_alpha_delta_u)
             
+            # Plot 2: g, r, i
+            scatter_3d_gri = px.scatter_3d(
+                recommendations,
+                x="g",
+                y="r",
+                z="i",
+                color="distance",
+                title="3D Scatter Plot: g vs r vs i",
+                labels={"g": "g", "r": "r", "i": "i", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_gri)
+            
+            # Plot 3: z, redshift, distance
+            scatter_3d_z_redshift_distance = px.scatter_3d(
+                recommendations,
+                x="z",
+                y="redshift",
+                z="distance",
+                color="distance",
+                title="3D Scatter Plot: z vs Redshift vs Distance",
+                labels={"z": "z", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_z_redshift_distance)
+
             # Pair Plot of Features
             st.write("Pair plot of the features of recommended stars:")
             pair_plot_fig = sns.pairplot(recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]])
