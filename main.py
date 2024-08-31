@@ -62,6 +62,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Display title and image
+st.markdown('<div class="page-title">Star Classification App</div>', unsafe_allow_html=True)
+st.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
+
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
     "🚀 Predict",
