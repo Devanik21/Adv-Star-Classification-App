@@ -149,6 +149,27 @@ def main():
         st.pyplot(violin_plot.figure)
         plt.close()
 
+
+
+    # Bubble Chart
+   st.subheader("🔵 Bubble Chart")
+   st.write("Visualize the relationship between three features using a bubble chart.")
+   x_bubble = st.selectbox("Choose feature for X axis (Bubble Chart):", data.columns.tolist())
+   y_bubble = st.selectbox("Choose feature for Y axis (Bubble Chart):", data.columns.tolist())
+   size_bubble = st.selectbox("Choose feature for Bubble Size:", data.columns.tolist())
+   if x_bubble and y_bubble and size_bubble:
+     bubble_fig = px.scatter(
+        data,
+        x=x_bubble,
+        y=y_bubble,
+        size=np.abs(data[size_bubble]),  # Ensure sizes are positive
+        color="class",
+        title=f"Bubble Chart of {x_bubble} vs {y_bubble} (Size: {size_bubble})",
+        color_continuous_scale='Viridis',
+        size_max=20
+    )
+    st.plotly_chart(bubble_fig, use_container_width=True)
+
     # Density Plot
     st.subheader("🔍 Density Plot")
     st.write("Visualize the density distribution of selected features.")
