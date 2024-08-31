@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 import numpy as np
 
 # Custom CSS for styling
@@ -23,6 +24,9 @@ st.markdown("""
             background-color: #3700b3;
         }
         .stSubheader {
+            color: #ffffff;
+        }
+        .stMarkdown {
             color: #ffffff;
         }
     </style>
@@ -73,21 +77,40 @@ def main():
         else:
             # Find similar stars based on feature proximity
             def calculate_distance(row):
-                return abs(row["alpha"] - alpha) + abs(row["delta"] - delta) + \
-                       abs(row["u"] - u) + abs(row["g"] - g) + \
-                       abs(row["r"] - r) + abs(row["i"] - i) + \
-                       abs(row["z"] - z) + abs(row["redshift"] - redshift)
+                return np.sqrt(
+                    (row["alpha"] - alpha)**2 + 
+                    (row["delta"] - delta)**2 + 
+                    (row["u"] - u)**2 + 
+                    (row["g"] - g)**2 + 
+                    (row["r"] - r)**2 + 
+                    (row["i"] - i)**2 + 
+                    (row["z"] - z)**2 + 
+                    (row["redshift"] - redshift)**2
+                )
 
             filtered_data["distance"] = filtered_data.apply(calculate_distance, axis=1)
             recommendations = filtered_data.sort_values(by="distance").head(10)
 
+            # Display recommendations
             st.subheader("Recommended Similar Stars")
             st.write("Here are the top 10 stars similar to your input:")
-            st.write(recommendations[["obj_ID", "alpha", "delta", "u", "g", "r", "i", "z", "redshift"]])
             
-            # Optional: Display a sample visualization of distances
+            # Display data in a table
+            st.dataframe(recommendations[["obj_ID", "alpha", "delta", "u", "g", "r", "i", "z", "redshift", "distance"]])
+            
+            # Interactive chart
             st.write("Distance distribution of recommended stars:")
-            st.bar_chart(recommendations.set_index('obj_ID')['distance'])
+            fig = px.bar(recommendations, x="obj_ID", y="distance", title="Distance of Recommended Stars")
+            st.plotly_chart(fig)
+            
+            # Optional: User feedback form
+            with st.expander("Provide Feedback"):
+                feedback = st.text_area("Your feedback or comments:")
+                if st.button("Submit Feedback"):
+                    if feedback:
+                        st.success("Thank you for your feedback!")
+                    else:
+                        st.warning("Please enter your feedback before submitting.")
 
 if __name__ == "__main__":
     main()
