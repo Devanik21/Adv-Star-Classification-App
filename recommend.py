@@ -15,6 +15,39 @@ def main():
     # Sidebar: Recommendation Inputs
     st.sidebar.header("Recommendation Inputs")
 
+    # Style the sidebar with a background color and rounded corners
+    st.markdown("""
+        <style>
+            .sidebar .sidebar-content {
+                background-color: #e6f2ff; /* Light blue background */
+                border-radius: 10px;
+                padding: 20px;
+            }
+            .stSidebar .stSelectbox div {
+                color: #007bff; /* Primary color for text */
+                font-weight: bold;
+                border: 1px solid #007bff; /* Border for selectbox */
+                border-radius: 5px;
+            }
+            .stButton button {
+                background-color: #4CAF50; /* Green background for the button */
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-bottom: 10px; /* Space below the button */
+            }
+            .stButton button:hover {
+                background-color: #45a049; /* Darker green on hover */
+            }
+            .stSlider {
+                margin-bottom: 20px;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
     star_type = st.sidebar.selectbox("Select a Star Type", ["Galaxy", "QSO", "Star"])
 
     # Place the button at the top of the sidebar
