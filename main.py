@@ -85,31 +85,6 @@ st.markdown("""
 
 # Theme Toggle
 
-if theme == "Dark":
-    st.markdown("""
-        <style>
-            body {
-                background-color: #333;
-                color: #fff;
-            }
-            .sidebar .sidebar-content {
-                background-color: #444;
-            }
-            .stSidebar .stSelectbox div {
-                color: #21b51f;
-            }
-            .stButton button {
-                background-color: #444;
-                color: white;
-            }
-            .stButton button:hover {
-                background-color: #0056b3;
-            }
-            .page-content {
-                color: #ddd;
-            }
-        </style>
-    """, unsafe_allow_html=True)
 
 # Page selection with emojis
 page = st.sidebar.selectbox("Select a page", [
