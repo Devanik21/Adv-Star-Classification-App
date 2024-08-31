@@ -1,9 +1,7 @@
 import streamlit as st
 
 def main():
-    # Set the page layout and background color
-    st.set_page_config(page_title="About", layout="centered")
-    
+
     # Custom CSS for styling
     st.markdown("""
         <style>
