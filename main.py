@@ -107,8 +107,8 @@ footer_html = """
     <div class="footer">
         <p>Made with ❤️ by Devanik + Niki</p>
         <p>
-            <a href="https://github.com/yourusername/star-classification-app" target="_blank" style="color: #58a6ff;">GitHub Repo</a> | 
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" style="color: #58a6ff;">LinkedIn</a>
+            <a href="https://github.com/Devanik21" target="_blank" style="color: #58a6ff;">GitHub Repo</a> | 
+            <a href="[Devanik](https://www.linkedin.com/in/devanik/)" target="_blank" style="color: #58a6ff;">LinkedIn</a>
         </p>
     </div>
 """
