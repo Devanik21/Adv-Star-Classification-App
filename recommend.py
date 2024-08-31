@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import seaborn as sns
-import matplotlib.pyplot as plt
 
 # Custom CSS for styling
 st.markdown("""
@@ -39,7 +38,7 @@ def main():
     st.write("Use this tool to find stars similar to your selected star type based on various parameters.")
 
     # Load dataset
-    @st.cache_data
+    @st.cache
     def load_data():
         try:
             return pd.read_csv("star_classification.csv")
@@ -102,56 +101,126 @@ def main():
             
             # Distance Distribution
             st.write("Distance distribution of recommended stars:")
-            plt.figure(figsize=(10, 6))
-            sns.histplot(recommendations["distance"], bins=20, color="skyblue", kde=True)
-            plt.title("Distance Distribution of Recommended Stars")
-            st.pyplot()
+            distance_fig = px.histogram(recommendations, x="distance", nbins=20, title="Distance Distribution of Recommended Stars")
+            st.plotly_chart(distance_fig)
 
-            # Interactive 2D Scatter Plots
-            st.write("2D scatter plots of selected features:")
+            # Interactive 3D Scatter Plots
+            st.write("3D scatter plots of selected features:")
             
-            # Plot 1: alpha vs delta
-            plt.figure(figsize=(10, 6))
-            sns.scatterplot(data=recommendations, x="alpha", y="delta", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
-            plt.title("Scatter Plot: Alpha vs Delta")
-            st.pyplot()
+            # Plot 1: alpha, delta, u
+            scatter_3d_alpha_delta_u = px.scatter_3d(
+                recommendations,
+                x="alpha",
+                y="delta",
+                z="u",
+                color="distance",
+                title="3D Scatter Plot: Alpha vs Delta vs u",
+                labels={"alpha": "Alpha", "delta": "Delta", "u": "u", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_alpha_delta_u)
             
-            # Plot 2: g vs r
-            plt.figure(figsize=(10, 6))
-            sns.scatterplot(data=recommendations, x="g", y="r", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
-            plt.title("Scatter Plot: g vs r")
-            st.pyplot()
+            # Plot 2: g, r, i
+            scatter_3d_gri = px.scatter_3d(
+                recommendations,
+                x="g",
+                y="r",
+                z="i",
+                color="distance",
+                title="3D Scatter Plot: g vs r vs i",
+                labels={"g": "g", "r": "r", "i": "i", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_gri)
             
-            # Plot 3: z vs redshift
-            plt.figure(figsize=(10, 6))
-            sns.scatterplot(data=recommendations, x="z", y="redshift", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
-            plt.title("Scatter Plot: z vs Redshift")
-            st.pyplot()
+            # Plot 3: z, redshift, distance
+            scatter_3d_z_redshift_distance = px.scatter_3d(
+                recommendations,
+                x="z",
+                y="redshift",
+                z="distance",
+                color="distance",
+                title="3D Scatter Plot: z vs Redshift vs Distance",
+                labels={"z": "z", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_z_redshift_distance)
             
-            # Plot 4: alpha vs g
-            plt.figure(figsize=(10, 6))
-            sns.scatterplot(data=recommendations, x="alpha", y="g", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
-            plt.title("Scatter Plot: Alpha vs g")
-            st.pyplot()
+            # Plot 4: alpha, g, r
+            scatter_3d_alpha_g_r = px.scatter_3d(
+                recommendations,
+                x="alpha",
+                y="g",
+                z="r",
+                color="distance",
+                title="3D Scatter Plot: Alpha vs g vs r",
+                labels={"alpha": "Alpha", "g": "g", "r": "r", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_alpha_g_r)
             
+            # Plot 5: delta, i, z
+            scatter_3d_delta_i_z = px.scatter_3d(
+                recommendations,
+                x="delta",
+                y="i",
+                z="z",
+                color="distance",
+                title="3D Scatter Plot: Delta vs i vs z",
+                labels={"delta": "Delta", "i": "i", "z": "z", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_delta_i_z)
+            
+            # Plot 6: u, r, redshift
+            scatter_3d_u_r_redshift = px.scatter_3d(
+                recommendations,
+                x="u",
+                y="r",
+                z="redshift",
+                color="distance",
+                title="3D Scatter Plot: u vs r vs Redshift",
+                labels={"u": "u", "r": "r", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_u_r_redshift)
+            
+            # Plot 7: alpha, delta, redshift
+            scatter_3d_alpha_delta_redshift = px.scatter_3d(
+                recommendations,
+                x="alpha",
+                y="delta",
+                z="redshift",
+                color="distance",
+                title="3D Scatter Plot: Alpha vs Delta vs Redshift",
+                labels={"alpha": "Alpha", "delta": "Delta", "redshift": "Redshift", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_alpha_delta_redshift)
+
+            # Plot 8: u, g, i
+            scatter_3d_u_g_i = px.scatter_3d(
+                recommendations,
+                x="u",
+                y="g",
+                z="i",
+                color="distance",
+                title="3D Scatter Plot: u vs g vs i",
+                labels={"u": "u", "g": "g", "i": "i", "distance": "Distance"}
+            )
+            st.plotly_chart(scatter_3d_u_g_i)
+
             # Pair Plot of Features
             st.write("Pair plot of the features of recommended stars:")
-            pair_plot_fig = sns.pairplot(recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]], palette="viridis")
+            pair_plot_fig = sns.pairplot(recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]])
             st.pyplot(pair_plot_fig)
             
             # Feature Correlation Heatmap
             st.write("Feature correlation heatmap of recommended stars:")
-            plt.figure(figsize=(10, 8))
             correlation_matrix = recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]].corr()
-            sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f")
-            plt.title("Feature Correlation Heatmap")
-            st.pyplot()
+            heatmap_fig = px.imshow(correlation_matrix, text_auto=True, title="Feature Correlation Heatmap")
+            st.plotly_chart(heatmap_fig)
             
             # Star Type Distribution
             st.write("Distribution of Star Types in the Dataset:")
             star_type_dist = data["class"].value_counts()
-            pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Distribution of Star Types", color_discrete_sequence=px.colors.sequential.Viridis)
+            pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Distribution of Star Types")
             st.plotly_chart(pie_chart_fig)
+            
+
 
 if __name__ == "__main__":
     main()
