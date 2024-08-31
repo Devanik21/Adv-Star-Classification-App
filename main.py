@@ -5,7 +5,7 @@ from streamlit.components.v1 import html
 
 st.set_page_config(page_title="Star Classification App", page_icon="🌟", layout="wide")
 st.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
-
+st.sidebar.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
 # Custom CSS for advanced styling
 st.markdown("""
     <style>
