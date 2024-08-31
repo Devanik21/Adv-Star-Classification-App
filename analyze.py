@@ -23,8 +23,40 @@ def main():
     if data.empty:
         st.stop()
 
-    # Histogram
-    st.subheader("🖼️ Histogram")
+    # Data Analysis & Statistics
+
+    # Descriptive Statistics
+    st.subheader("📊 Descriptive Statistics")
+    st.write("Basic statistical summary of the dataset.")
+    if not data.empty:
+        st.write(data.describe())
+
+    # Correlation Matrix
+    st.subheader("🌡️ Correlation Matrix")
+    st.write("Correlation matrix of selected columns.")
+    columns_corr = st.multiselect("Choose columns for correlation matrix:", data.columns.tolist(), default=["alpha", "delta", "u", "g", "r", "i", "z", "redshift"])
+    if len(columns_corr) > 1:
+        correlation_matrix = data[columns_corr].corr()
+        st.write(correlation_matrix)
+        heatmap_fig = px.imshow(correlation_matrix, text_auto=True, title="Correlation Matrix")
+        st.plotly_chart(heatmap_fig)
+    else:
+        st.warning("Select at least two columns for correlation matrix.")
+
+    # Skewness and Kurtosis
+    st.subheader("📉 Skewness and Kurtosis")
+    st.write("Skewness and kurtosis for selected columns.")
+    columns_skew_kurt = st.multiselect("Choose columns for skewness and kurtosis:", data.columns.tolist(), default=["alpha", "delta", "u"])
+    if len(columns_skew_kurt) > 0:
+        skewness = data[columns_skew_kurt].skew()
+        kurtosis = data[columns_skew_kurt].kurtosis()
+        st.write("Skewness:")
+        st.write(skewness)
+        st.write("Kurtosis:")
+        st.write(kurtosis)
+
+    # Histograms
+    st.subheader("🖼️ Histograms")
     st.write("Select a column to visualize its distribution.")
     column_histogram = st.selectbox("Choose column for histogram:", data.columns.tolist())
     if column_histogram:
@@ -46,7 +78,7 @@ def main():
     if column_violin:
         violin_plot = sns.violinplot(data[column_violin])
         st.pyplot(violin_plot.figure)
-        plt.close()  # Close the figure to avoid display issues
+        plt.close()
 
     # Correlation Heatmap
     st.subheader("🌡️ Correlation Heatmap")
