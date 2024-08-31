@@ -220,14 +220,7 @@ def main():
             pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Distribution of Star Types")
             st.plotly_chart(pie_chart_fig)
             
-            # Optional: User feedback form
-            with st.expander("Provide Feedback"):
-                feedback = st.text_area("Your feedback or comments:")
-                if st.button("Submit Feedback"):
-                    if feedback:
-                        st.success("Thank you for your feedback!")
-                    else:
-                        st.warning("Please enter your feedback before submitting.")
+
 
 if __name__ == "__main__":
     main()
