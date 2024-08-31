@@ -2,7 +2,7 @@ import streamlit as st
 
 def main():
     # Set the page layout and background color
-   
+    st.set_page_config(page_title="About", layout="centered")
     
     # Custom CSS for styling
     st.markdown("""
@@ -78,24 +78,17 @@ def main():
         <div class="info-box">
             <h3>Meet the Team</h3>
             <div class="team-member">
-                <img src="https://via.placeholder.com/80" alt="Team Member 1">
+                <img src="https://via.placeholder.com/80" alt="Devanik">
                 <div>
                     <h4>Devanik</h4>
-                    <p>Lead Developer & Data Scientist</p>
+                    <p>Aspiring Data Scientist</p>
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/80" alt="Team Member 2">
+                <img src="https://via.placeholder.com/80" alt="AI">
                 <div>
-                    <h4>Jane Doe</h4>
-                    <p>Machine Learning Engineer</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/80" alt="Team Member 3">
-                <div>
-                    <h4>John Smith</h4>
-                    <p>UI/UX Designer</p>
+                    <h4>ChatGPT</h4>
+                    <p>AI Assistant</p>
                 </div>
             </div>
         </div>
