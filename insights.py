@@ -43,11 +43,10 @@ def main():
     # Model Performance Metrics
     st.subheader("📈 Model Performance Metrics")
     st.write("Evaluate the model's performance metrics.")
-    # Replace with actual metrics if you have them
-    st.write("Accuracy: 95%")  # Example metric
-    st.write("Precision: 94%")  # Example metric
-    st.write("Recall: 96%")  # Example metric
-    st.write("F1 Score: 95%")  # Example metric
+    st.write("**Accuracy:** 95%")  # Example metric
+    st.write("**Precision:** 94%")  # Example metric
+    st.write("**Recall:** 96%")  # Example metric
+    st.write("**F1 Score:** 95%")  # Example metric
 
     # Feature Importance
     st.subheader("🔍 Feature Importance")
@@ -58,9 +57,11 @@ def main():
         x=feature_names,
         y=importances,
         title="Feature Importance",
-        labels={"x": "Feature", "y": "Importance"}
+        labels={"x": "Feature", "y": "Importance"},
+        color=importances,
+        color_continuous_scale='Viridis'
     )
-    st.plotly_chart(feature_importance_fig)
+    st.plotly_chart(feature_importance_fig, use_container_width=True)
 
     # Interactive Feature Exploration
     st.subheader("🔍 Interactive Feature Exploration")
@@ -68,8 +69,15 @@ def main():
     x_feature = st.selectbox("Choose feature for X axis:", data.columns.tolist())
     y_feature = st.selectbox("Choose feature for Y axis:", data.columns.tolist())
     if x_feature and y_feature:
-        scatter_fig = px.scatter(data, x=x_feature, y=y_feature, color="class", title=f"Scatter Plot of {x_feature} vs {y_feature}")
-        st.plotly_chart(scatter_fig)
+        scatter_fig = px.scatter(
+            data,
+            x=x_feature,
+            y=y_feature,
+            color="class",
+            title=f"Scatter Plot of {x_feature} vs {y_feature}",
+            color_continuous_scale='Rainbow'
+        )
+        st.plotly_chart(scatter_fig, use_container_width=True)
 
     # Model Predictions Analysis
     st.subheader("🔮 Model Predictions Analysis")
@@ -80,10 +88,15 @@ def main():
         # Generate predictions
         predictions = model.predict(data[features])
         data['predictions'] = predictions
-        prediction_dist_fig = px.histogram(data, x='predictions', title="Distribution of Model Predictions")
-        st.plotly_chart(prediction_dist_fig)
+        prediction_dist_fig = px.histogram(
+            data,
+            x='predictions',
+            title="Distribution of Model Predictions",
+            color_discrete_sequence=['lightcoral']
+        )
+        st.plotly_chart(prediction_dist_fig, use_container_width=True)
 
-
+    # ROC Curve
     st.subheader("📈 ROC Curve")
     st.write("Plot the ROC curve for model performance.")
     if model:
@@ -94,9 +107,10 @@ def main():
             x=fpr,
             y=tpr,
             title="ROC Curve",
-            labels={"x": "False Positive Rate", "y": "True Positive Rate"}
+            labels={"x": "False Positive Rate", "y": "True Positive Rate"},
+            line_shape='linear'
         )
-        st.plotly_chart(roc_curve_fig)
+        st.plotly_chart(roc_curve_fig, use_container_width=True)
 
     # Precision-Recall Curve
     st.subheader("📉 Precision-Recall Curve")
@@ -109,32 +123,43 @@ def main():
             x=recall,
             y=precision,
             title="Precision-Recall Curve",
-            labels={"x": "Recall", "y": "Precision"}
+            labels={"x": "Recall", "y": "Precision"},
+            line_shape='linear'
         )
-        st.plotly_chart(pr_curve_fig)
+        st.plotly_chart(pr_curve_fig, use_container_width=True)
 
     # Feature Distribution
     st.subheader("📈 Feature Distribution")
     st.write("Visualize the distribution of selected features.")
     feature_dist = st.selectbox("Choose feature to visualize:", data.columns.tolist())
     if feature_dist:
-        feature_dist_fig = px.histogram(data, x=feature_dist, title=f"Distribution of {feature_dist}")
-        st.plotly_chart(feature_dist_fig)
+        feature_dist_fig = px.histogram(
+            data,
+            x=feature_dist,
+            title=f"Distribution of {feature_dist}",
+            color_discrete_sequence=['orchid']
+        )
+        st.plotly_chart(feature_dist_fig, use_container_width=True)
 
     # Box Plot for Multiple Features
     st.subheader("📦 Box Plot for Multiple Features")
     st.write("Visualize distributions of selected features using box plots.")
     box_features = st.multiselect("Choose features for box plot:", data.columns.tolist(), default=["alpha", "delta"])
     if len(box_features) > 0:
-        box_plot_fig = px.box(data, y=box_features, title="Box Plot of Selected Features")
-        st.plotly_chart(box_plot_fig)
+        box_plot_fig = px.box(
+            data,
+            y=box_features,
+            title="Box Plot of Selected Features",
+            color_discrete_sequence=['lightseagreen']
+        )
+        st.plotly_chart(box_plot_fig, use_container_width=True)
 
     # Violin Plot
     st.subheader("🎻 Violin Plot")
     st.write("Visualize the distribution of a feature using a violin plot.")
     violin_feature = st.selectbox("Choose feature for violin plot:", data.columns.tolist())
     if violin_feature:
-        violin_plot = sns.violinplot(data=data, y=violin_feature)
+        violin_plot = sns.violinplot(data=data, y=violin_feature, palette="crest")
         st.pyplot(violin_plot.figure)
         plt.close()
 
@@ -143,7 +168,7 @@ def main():
     st.write("Visualize the density distribution of selected features.")
     density_features = st.multiselect("Choose features for density plot:", data.columns.tolist(), default=["alpha", "delta"])
     if len(density_features) > 0:
-        density_plot = sns.kdeplot(data[density_features])
+        density_plot = sns.kdeplot(data[density_features], palette="tab10")
         st.pyplot(density_plot.figure)
         plt.close()
 
@@ -152,7 +177,7 @@ def main():
     st.write("Visualize Kernel Density Estimate of a selected feature.")
     kde_feature = st.selectbox("Choose feature for KDE plot:", data.columns.tolist())
     if kde_feature:
-        kde_plot = sns.kdeplot(data[kde_feature], fill=True)
+        kde_plot = sns.kdeplot(data[kde_feature], fill=True, color='salmon')
         st.pyplot(kde_plot.figure)
         plt.close()
 
