@@ -22,7 +22,9 @@ def main():
         st.stop()
 
     # Display column names to debug
-   
+    st.write("Columns in dataset:", data.columns.tolist())
+
+    # 2D Visualizations
 
     # Visualization 1: Interactive Histogram
     st.subheader("1. Interactive Histogram")
@@ -88,6 +90,44 @@ def main():
         labels={"redshift": "Redshift", "count": "Star Counts"}
     )
     st.plotly_chart(area_chart_fig)
+
+    # 3D Visualizations
+
+    # Visualization 8: 3D Scatter Plot of `alpha`, `delta`, and `u`
+    st.subheader("8. 3D Scatter Plot: Alpha vs Delta vs u")
+    st.write("3D scatter plot of `alpha`, `delta`, and `u`.")
+    scatter_3d_alpha_delta_u = px.scatter_3d(
+        data,
+        x="alpha",
+        y="delta",
+        z="u",
+        title="3D Scatter Plot: Alpha vs Delta vs u"
+    )
+    st.plotly_chart(scatter_3d_alpha_delta_u)
+
+    # Visualization 9: 3D Scatter Plot of `g`, `r`, and `i`
+    st.subheader("9. 3D Scatter Plot: g vs r vs i")
+    st.write("3D scatter plot of `g`, `r`, and `i`.")
+    scatter_3d_gri = px.scatter_3d(
+        data,
+        x="g",
+        y="r",
+        z="i",
+        title="3D Scatter Plot: g vs r vs i"
+    )
+    st.plotly_chart(scatter_3d_gri)
+
+    # Visualization 10: 3D Scatter Plot of `z`, `redshift`, and `alpha`
+    st.subheader("10. 3D Scatter Plot: z vs Redshift vs Alpha")
+    st.write("3D scatter plot of `z`, `redshift`, and `alpha`.")
+    scatter_3d_z_redshift_alpha = px.scatter_3d(
+        data,
+        x="z",
+        y="redshift",
+        z="alpha",
+        title="3D Scatter Plot: z vs Redshift vs Alpha"
+    )
+    st.plotly_chart(scatter_3d_z_redshift_alpha)
 
 if __name__ == "__main__":
     main()
