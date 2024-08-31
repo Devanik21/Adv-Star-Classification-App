@@ -25,21 +25,21 @@ st.markdown("""
         .stButton>button:hover {
             background-color: #3700b3;
         }
-        .stSubheader, .stMarkdown {
+        .stSubheader {
+            color: #ffffff;
+        }
+        .stMarkdown {
             color: #ffffff;
         }
     </style>
 """, unsafe_allow_html=True)
-
-# Set Seaborn theme for consistency
-sns.set_theme(style="darkgrid", palette="deep")
 
 def main():
     st.title("Star Recommendation System")
     st.write("Use this tool to find stars similar to your selected star type based on various parameters.")
 
     # Load dataset
-    @st.cache
+    @st.cache_data
     def load_data():
         try:
             return pd.read_csv("star_classification.csv")
@@ -102,49 +102,55 @@ def main():
             
             # Distance Distribution
             st.write("Distance distribution of recommended stars:")
-            distance_fig = px.histogram(recommendations, x="distance", nbins=20, title="Distance Distribution of Recommended Stars", color_discrete_sequence=px.colors.sequential.Plasma)
-            st.plotly_chart(distance_fig)
+            plt.figure(figsize=(10, 6))
+            sns.histplot(recommendations["distance"], bins=20, color="skyblue", kde=True)
+            plt.title("Distance Distribution of Recommended Stars")
+            st.pyplot()
 
-            # 2D Scatter Plots
+            # Interactive 2D Scatter Plots
             st.write("2D scatter plots of selected features:")
-
+            
             # Plot 1: alpha vs delta
-            scatter_2d_alpha_delta = sns.scatterplot(x="alpha", y="delta", hue="distance", data=recommendations, palette="viridis")
+            plt.figure(figsize=(10, 6))
+            sns.scatterplot(data=recommendations, x="alpha", y="delta", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
             plt.title("Scatter Plot: Alpha vs Delta")
-            st.pyplot(scatter_2d_alpha_delta.figure)
+            st.pyplot()
             
-            # Plot 2: u vs g
-            scatter_2d_u_g = sns.scatterplot(x="u", y="g", hue="distance", data=recommendations, palette="coolwarm")
-            plt.title("Scatter Plot: u vs g")
-            st.pyplot(scatter_2d_u_g.figure)
+            # Plot 2: g vs r
+            plt.figure(figsize=(10, 6))
+            sns.scatterplot(data=recommendations, x="g", y="r", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
+            plt.title("Scatter Plot: g vs r")
+            st.pyplot()
             
-            # Plot 3: r vs i
-            scatter_2d_r_i = sns.scatterplot(x="r", y="i", hue="distance", data=recommendations, palette="magma")
-            plt.title("Scatter Plot: r vs i")
-            st.pyplot(scatter_2d_r_i.figure)
-            
-            # Plot 4: z vs redshift
-            scatter_2d_z_redshift = sns.scatterplot(x="z", y="redshift", hue="distance", data=recommendations, palette="Spectral")
+            # Plot 3: z vs redshift
+            plt.figure(figsize=(10, 6))
+            sns.scatterplot(data=recommendations, x="z", y="redshift", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
             plt.title("Scatter Plot: z vs Redshift")
-            st.pyplot(scatter_2d_z_redshift.figure)
-
+            st.pyplot()
+            
+            # Plot 4: alpha vs g
+            plt.figure(figsize=(10, 6))
+            sns.scatterplot(data=recommendations, x="alpha", y="g", hue="distance", palette="viridis", size="distance", sizes=(50, 200))
+            plt.title("Scatter Plot: Alpha vs g")
+            st.pyplot()
+            
             # Pair Plot of Features
             st.write("Pair plot of the features of recommended stars:")
-            pair_plot_fig = sns.pairplot(recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]], palette="coolwarm")
+            pair_plot_fig = sns.pairplot(recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]], palette="viridis")
             st.pyplot(pair_plot_fig)
-
+            
             # Feature Correlation Heatmap
             st.write("Feature correlation heatmap of recommended stars:")
+            plt.figure(figsize=(10, 8))
             correlation_matrix = recommendations[["alpha", "delta", "u", "g", "r", "i", "z", "redshift"]].corr()
-            heatmap_fig, ax = plt.subplots()
-            sns.heatmap(correlation_matrix, annot=True, cmap="YlGnBu", ax=ax)
-            ax.set_title("Feature Correlation Heatmap")
-            st.pyplot(heatmap_fig)
+            sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f")
+            plt.title("Feature Correlation Heatmap")
+            st.pyplot()
             
             # Star Type Distribution
             st.write("Distribution of Star Types in the Dataset:")
             star_type_dist = data["class"].value_counts()
-            pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Distribution of Star Types", color_discrete_sequence=px.colors.sequential.RdBu)
+            pie_chart_fig = px.pie(values=star_type_dist.values, names=star_type_dist.index, title="Distribution of Star Types", color_discrete_sequence=px.colors.sequential.Viridis)
             st.plotly_chart(pie_chart_fig)
 
 if __name__ == "__main__":
