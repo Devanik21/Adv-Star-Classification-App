@@ -26,7 +26,7 @@ def main():
     ]
     
     star_images = [
-        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]
+        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg","GSFC_20171208_Archive_e000154~orig.jpg"]
         if os.path.exists(os.path.join("Gallery/STAR", file))
     ]
 
