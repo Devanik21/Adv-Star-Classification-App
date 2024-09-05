@@ -16,7 +16,7 @@ def main():
 
     # Ensure paths are correct and files exist
     galaxy_images = [
-        os.path.join("Gallery/Galaxy", file) for file in ["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]
+        os.path.join("Gallery/Galaxy", file) for file in ["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg","GSFC_20171208_Archive_e000154~orig.jpg"]
         if os.path.exists(os.path.join("Gallery/Galaxy", file))
     ]
     
@@ -26,7 +26,7 @@ def main():
     ]
     
     star_images = [
-        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg","GSFC_20171208_Archive_e000154~orig.jpg"]
+        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]
         if os.path.exists(os.path.join("Gallery/STAR", file))
     ]
 
