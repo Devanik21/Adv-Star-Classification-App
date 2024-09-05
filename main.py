@@ -131,7 +131,7 @@ elif page == "📚 About":
 
 # Display the main image below the title
 
-st.sidebar.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
+st.image("Galaxy.jpg", caption="A glimpse of the galaxy", use_column_width=True)
 # Adding a footer with colorful styling
 st.markdown("""
     <div class="footer">
