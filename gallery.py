@@ -19,12 +19,25 @@ def main():
         "Gallery/Galaxy/6.jpg"
     ]
     
-    # You can add more image paths for QSO and Star in the same format.
+    # Image paths for QSO
+    qso_images = [
+        "Gallery/QSO/1.jpg",
+        "Gallery/QSO/2.png",
+        "Gallery/QSO/3.jpg"
+    ]
     
-    # Display Galaxy images
+    # Image paths for Star
+    star_images = [
+        "Gallery/STAR/1.jpg",
+        "Gallery/STAR/2.jpg",
+        "Gallery/STAR/3.jpg",
+        "Gallery/STAR/4.jpg"
+    ]
+    
+    # Display images for each category
     display_images("Galaxy", galaxy_images)
-    
-    # For QSO and Star, repeat the process by adding their respective images.
+    display_images("QSO", qso_images)
+    display_images("Star", star_images)
 
 if __name__ == "__main__":
     main()
