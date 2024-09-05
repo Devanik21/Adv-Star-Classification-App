@@ -7,33 +7,37 @@ def display_images(category, image_list):
         cols = st.columns(5)  # Display 5 images per row
         for idx, image in enumerate(image_list):
             with cols[idx % 5]:  # Display in a grid format
-                st.image(image, use_column_width=True)
+                st.image(image, use_column_width=True, caption=os.path.basename(image).split('.')[0])
     else:
-        st.write(f"No images found for {category}.")
+        st.write(f"⚠️ No images found for {category}. Please ensure the image files are in the correct folder.")
+
+def load_images_from_folder(folder_path, image_extensions=[".jpg", ".png"]):
+    """Load image file paths from a specified folder."""
+    return [
+        os.path.join(folder_path, file)
+        for file in os.listdir(folder_path)
+        if os.path.splitext(file)[1].lower() in image_extensions and os.path.exists(os.path.join(folder_path, file))
+    ]
 
 def main():
-    st.title("Gallery")
+    st.title("🌌 Astronomy Image Gallery")
+    st.write("Explore stunning images from different astronomical categories including Galaxies, Quasars (QSO), and Stars.")
 
-    # Ensure paths are correct and files exist
-    galaxy_images = [
-        os.path.join("Gallery/Galaxy", file) for file in ["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]
-        if os.path.exists(os.path.join("Gallery/Galaxy", file))
-    ]
-    
-    qso_images = [
-        os.path.join("Gallery/QSO", file) for file in ["1.jpg", "2.png", "3.jpg"]
-        if os.path.exists(os.path.join("Gallery/QSO", file))
-    ]
-    
-    star_images = [
-        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]
-        if os.path.exists(os.path.join("Gallery/STAR", file))
-    ]
+    # Define the directories for each category
+    base_dir = "Gallery"
+    categories = {
+        "Galaxy": os.path.join(base_dir, "Galaxy"),
+        "QSO": os.path.join(base_dir, "QSO"),
+        "Star": os.path.join(base_dir, "STAR")
+    }
 
-    # Display images for each category
-    display_images("Galaxy", galaxy_images)
-    display_images("QSO", qso_images)
-    display_images("Star", star_images)
+    # Load images dynamically from each folder
+    for category, path in categories.items():
+        if os.path.exists(path):
+            image_list = load_images_from_folder(path)
+            display_images(category, image_list)
+        else:
+            st.write(f"⚠️ Directory {path} not found. Please check the folder structure.")
 
 if __name__ == "__main__":
     main()
