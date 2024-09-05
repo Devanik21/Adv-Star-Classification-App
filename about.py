@@ -83,7 +83,7 @@ def main():
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/80" alt="AI">
+                <img src="https://via.placeholder.com/80" alt="Niki(AI)">
                 <div>
                     <h4>AI</h4>
                     <p>Advanced  Copilot</p>
