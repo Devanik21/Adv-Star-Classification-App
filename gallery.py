@@ -1,39 +1,35 @@
 import streamlit as st
+import os
 
 def display_images(category, image_list):
     st.subheader(category)
-    cols = st.columns(5)  # Display 5 images per row
-    for idx, image in enumerate(image_list):
-        with cols[idx % 5]:  # Display in a grid format
-            st.image(image, use_column_width=True)
+    if image_list:
+        cols = st.columns(5)  # Display 5 images per row
+        for idx, image in enumerate(image_list):
+            with cols[idx % 5]:  # Display in a grid format
+                st.image(image, use_column_width=True)
+    else:
+        st.write(f"No images found for {category}.")
 
 def main():
     st.title("Gallery")
-    
-    # Image paths for Galaxy
+
+    # Ensure paths are correct and files exist
     galaxy_images = [
-        "Gallery/Galaxy/2.jpg",
-        "Gallery/Galaxy/3.jpg",
-        "Gallery/Galaxy/4.jpg",
-        "Gallery/Galaxy/5.jpg",
-        "Gallery/Galaxy/6.jpg"
+        os.path.join("Gallery/Galaxy", file) for file in ["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]
+        if os.path.exists(os.path.join("Gallery/Galaxy", file))
     ]
     
-    # Image paths for QSO
     qso_images = [
-        "Gallery/QSO/1.jpg",
-        "Gallery/QSO/2.png",
-        "Gallery/QSO/3.jpg"
+        os.path.join("Gallery/QSO", file) for file in ["1.jpg", "2.png", "3.jpg"]
+        if os.path.exists(os.path.join("Gallery/QSO", file))
     ]
     
-    # Image paths for Star
     star_images = [
-        "Gallery/STAR/1.jpg",
-        "Gallery/STAR/2.jpg",
-        "Gallery/STAR/3.jpg",
-        "Gallery/STAR/4.jpg"
+        os.path.join("Gallery/STAR", file) for file in ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]
+        if os.path.exists(os.path.join("Gallery/STAR", file))
     ]
-    
+
     # Display images for each category
     display_images("Galaxy", galaxy_images)
     display_images("QSO", qso_images)
