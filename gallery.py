@@ -10,15 +10,21 @@ def display_images(category, image_list):
 def main():
     st.title("Gallery")
     
-    # Example image lists, replace with actual file paths or URLs
-    galaxy_images = ["path_to_galaxy_image1.jpg", "path_to_galaxy_image2.jpg", ..., "path_to_galaxy_image10.jpg"]
-    qso_images = ["path_to_qso_image1.jpg", "path_to_qso_image2.jpg", ..., "path_to_qso_image10.jpg"]
-    star_images = ["path_to_star_image1.jpg", "path_to_star_image2.jpg", ..., "path_to_star_image10.jpg"]
+    # Image paths for Galaxy
+    galaxy_images = [
+        "Gallery/Galaxy/2.jpg",
+        "Gallery/Galaxy/3.jpg",
+        "Gallery/Galaxy/4.jpg",
+        "Gallery/Galaxy/5.jpg",
+        "Gallery/Galaxy/6.jpg"
+    ]
     
-    # Display 10 images from each category
+    # You can add more image paths for QSO and Star in the same format.
+    
+    # Display Galaxy images
     display_images("Galaxy", galaxy_images)
-    display_images("QSO", qso_images)
-    display_images("Star", star_images)
+    
+    # For QSO and Star, repeat the process by adding their respective images.
 
 if __name__ == "__main__":
     main()
