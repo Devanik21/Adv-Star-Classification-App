@@ -14,5 +14,6 @@ torchvision
 pytorch-lightning
 statsmodels
 plotly
-streamlit
+streamlit==1.39.0
+
 
