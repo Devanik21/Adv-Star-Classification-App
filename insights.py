@@ -28,7 +28,7 @@ def main():
     @st.cache_data
     def load_model():
         try:
-            return joblib.load("CatBoost_adv_stars_class.pkl")  # Adjust the path to your model file
+            return joblib.load("RF_adv_stars_class.pkl")  # Adjust the path to your model file
         except Exception as e:
             st.error(f"Error loading model: {e}")
             return None
