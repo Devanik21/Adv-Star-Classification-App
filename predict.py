@@ -5,7 +5,7 @@ import joblib
 def main():
     # Load the trained model
     try:
-        model = joblib.load("CatBoost_adv_stars_class.pkl")
+        model = joblib.load("RF_adv_stars_class.pkl")
     except Exception as e:
         st.error(f"Error loading model: {e}")
         return  # Exit if model cannot be loaded
